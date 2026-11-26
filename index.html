@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nakajox Experience — 無色の緑色の実験室 | Colorless Green Ideas</title>
-<meta name="description" content="Nakajox Experience: An interactive digital art archive exploring Chomsky's syntactic paradox, temporal perception, and Japanese Wabi-Sabi minimalism.">
+<title>Nakajox Experience — Universal Will to Become | そうなろうとする万有意志</title>
+<meta name="description" content="Nakajox Experience（中城朋洋 / electriclady inc.）—「そうなろうとする万有意志（Universal Will to Become）」をテーマに、身体・知覚・計算構造の境界を探る9つのインタラクティブ・アート実験室。代表作『64 FRAGMENTS』ほか収録。">
 <link rel="canonical" href="https://tnakajox.github.io/nakajox_experience/">
-<meta property="og:title" content="Nakajox Experience — Colorless Green Ideas">
-<meta property="og:description" content="Nine algorithmic experiments on body, perception, and system architecture. Featuring 64 FRAGMENTS.">
+<meta property="og:title" content="Nakajox Experience — Universal Will to Become">
+<meta property="og:description" content="そうなろうとする万有意志。身体・知覚・計算構造の境界を探る9つのインタラクティブ・アート実験標本。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tnakajox.github.io/nakajox_experience/">
 <meta property="og:image" content="https://tnakajox.github.io/nakajox_experience/og.png">
@@ -239,7 +239,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .hanko-seal {
@@ -253,28 +253,36 @@
     padding: 2px 7px;
   }
 
-  .hero-jp-sub {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.24em;
-    color: var(--muted);
-  }
-
   .hero-title {
     font-family: var(--mincho);
-    font-size: clamp(26px, 3.5vw, 44px);
+    font-size: clamp(28px, 3.8vw, 46px);
     font-weight: 400;
-    line-height: 1.35;
-    letter-spacing: 0.18em;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
     color: var(--fg);
     margin-bottom: 38px;
   }
 
-  .hero-title span.jp-title-sub {
+  .hero-subtitle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .en-title-sub {
     display: block;
-    margin-top: 8px;
-    font-size: clamp(13px, 1.3vw, 16px);
-    letter-spacing: 0.44em;
+    font-family: var(--mincho);
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    color: var(--paper);
+  }
+
+  .jp-title-sub {
+    display: block;
+    font-size: clamp(13px, 1.25vw, 15px);
+    letter-spacing: 0.38em;
     color: var(--muted);
   }
 
@@ -396,10 +404,10 @@
 
   .raw-caption h2 {
     font-family: var(--mincho);
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 500;
-    letter-spacing: 0.16em;
-    line-height: 1.45;
+    letter-spacing: 0.14em;
+    line-height: 1.55;
     margin-bottom: 14px;
     color: var(--fg);
   }
@@ -984,16 +992,17 @@
     font-size: 11px;
     letter-spacing: 0.2em;
     color: var(--muted);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
 
   .colophon-name {
-    font-family: var(--display);
-    font-size: clamp(44px, 5.4vw, 72px);
-    line-height: 0.96;
-    letter-spacing: 0.02em;
+    font-family: var(--mincho);
+    font-size: clamp(32px, 3.8vw, 50px);
+    font-weight: 500;
+    line-height: 1.24;
+    letter-spacing: 0.14em;
     color: var(--fg);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .colophon-jp-row {
@@ -1011,18 +1020,15 @@
     color: var(--paper);
   }
 
-  .hanko-square {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    border: 1.5px solid var(--wabi-rust);
-    color: var(--wabi-rust);
-    font-family: var(--mincho);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0;
+  /* 削れ感（石印・掠れ）のある朱印SVG */
+  .hanko-eroded-svg {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+    transform: rotate(-2.2deg);
+    filter: url(#seal-erosion);
+    opacity: 0.92;
   }
 
   .colophon-role {
@@ -1089,7 +1095,7 @@
   .colophon-aside {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 22px;
   }
 
   .rakkan-note {
@@ -1181,6 +1187,23 @@
 </head>
 <body>
 
+<!-- 石印の削れ・かすれ表現用SVGフィルター（非表示定義） -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
+  <defs>
+    <filter id="seal-erosion" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="3" seed="14" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.8" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="7" result="grain" />
+      <feColorMatrix in="grain" type="matrix" values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 -1.9 1.45" result="mask" />
+      <feComposite in="displaced" in2="mask" operator="in" />
+    </filter>
+  </defs>
+</svg>
+
 <div class="asanoha-bg"></div>
 <canvas id="mosaic-canvas"></canvas>
 <div class="grit-overlay"></div>
@@ -1189,7 +1212,7 @@
 <canvas id="brush-canvas"></canvas>
 
 <div class="vertical-rail" aria-hidden="true">
-  無色の緑色の実験室 ／／ 弐〇弐六
+  そうなろうとする万有意志 ／／ 弐〇弐六
 </div>
 
 <header>
@@ -1217,12 +1240,14 @@
     <div class="hero-center-block">
       <div class="hero-jp-line">
         <span class="hanko-seal">実験記録</span>
-        <span class="hero-jp-sub">UNIVERSAL WILL TO BECOME.</span>
       </div>
 
       <h1 class="hero-title">
         Nakajox Experience
-        <span class="jp-title-sub">無色の緑色の実験室</span>
+        <span class="hero-subtitle-group">
+          <span class="en-title-sub">Universal Will to Become</span>
+          <span class="jp-title-sub">そうなろうとする万有意志</span>
+        </span>
       </h1>
 
       <div class="wabi-rule"></div>
@@ -1252,13 +1277,13 @@
   <!-- STAGE 02: スクロールで顔が形成される瞬間 -->
   <section class="mosaic-zone" id="mosaic">
     <div class="raw-caption">
-      <div class="cap-id">01. PERCEPTION // 断片と結像</div>
-      <h2>無数の断片が、<br>ひとつの顔を結ぶ。</h2>
+      <div class="cap-id">1. PERCEPTION // 断片と結像</div>
+      <h2>断片は、<br>いつ顔になるのか。</h2>
       <p>
-        意味を持たないデジタル断片は、スクロールの深度に応じて引き合い、墨の濃淡のような陰影だけで「人間の顔」を結ぶ。結像の瞬間にのみ、静寂を破るノイズが走り、瞳はカーソルの動きを追い続ける。
+        意味を持たない無数の断片が、ひとつの顔を結ぶ。見ることと、見られること。その境界を探る。
       </p>
       <p class="en-note">
-        Isolated pixels carry no meaning on their own; through scroll depth, they converge into a human portrait that tracks your cursor, triggering a brief signal rupture upon recognition.
+        When do fragments become a face? Countless meaningless fragments converge into a single portrait—exploring the threshold between seeing and being seen.
       </p>
     </div>
   </section>
@@ -1367,7 +1392,13 @@
           <div class="colophon-name">TOMOHIRO<br>NAKAJO</div>
           <div class="colophon-jp-row">
             <span class="colophon-jp-name">中城 朋洋</span>
-            <span class="hanko-square" aria-label="作家印">中</span>
+            <!-- 削れ感のある作家朱印「中」 -->
+            <svg class="hanko-eroded-svg" viewBox="0 0 36 36" aria-label="作家印 中">
+              <rect x="2.5" y="2.5" width="31" height="31" fill="none" stroke="#963e33" stroke-width="2.6" />
+              <line x1="2.5" y1="11" x2="5" y2="11" stroke="#050505" stroke-width="2.5" />
+              <line x1="33.5" y1="24" x2="31" y2="24" stroke="#050505" stroke-width="2.5" />
+              <text x="18" y="25" text-anchor="middle" fill="#963e33" font-family="'Shippori Mincho', serif" font-weight="700" font-size="20">中</text>
+            </svg>
           </div>
           <div class="colophon-role">CREATOR / ARTIST</div>
         </div>
@@ -1393,7 +1424,13 @@
 
         <div class="colophon-aside">
           <span class="rakkan-note">Why so serious?</span>
-          <span class="hanko-square" aria-label="スタジオ印">印</span>
+          <!-- 削れ感のあるスタジオ朱印「印」 -->
+          <svg class="hanko-eroded-svg" viewBox="0 0 36 36" aria-label="スタジオ印 印" style="transform: rotate(1.8deg);">
+            <rect x="2.5" y="2.5" width="31" height="31" fill="none" stroke="#963e33" stroke-width="2.6" />
+            <line x1="14" y1="2.5" x2="17" y2="2.5" stroke="#050505" stroke-width="2.6" />
+            <line x1="2.5" y1="27" x2="5" y2="27" stroke="#050505" stroke-width="2.6" />
+            <text x="18" y="25" text-anchor="middle" fill="#963e33" font-family="'Shippori Mincho', serif" font-weight="700" font-size="19">印</text>
+          </svg>
         </div>
       </div>
     </div>
@@ -1401,12 +1438,15 @@
 </main>
 
 <footer>
-  <span>Nakajox Experience — 無色の緑色の実験室</span>
+  <span>Nakajox Experience — Universal Will to Become</span>
   <span>© electriclady inc.</span>
 </footer>
 
 <script>
 (() => {
+  // ポートレート画像パス（リポジトリ直下に配置するファイル名）
+  const PORTRAIT_SRC = "portrait.jpg";
+
   function fitCanvasDPR(canvas, ctx, cssW, cssH) {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.floor(cssW * dpr);
@@ -2188,7 +2228,8 @@
   buildArchiveDeck("ALL");
 
   // =========================================================
-  // 6. デジタルモザイク顔（#mosaic基準で結像＋一定時間滞在＋視線追従）
+  // 6. ご本人の白黒ポートレートによるデジタルモザイク結像
+  //    （白背景を自動透過し、黒髪と肌の陰影だけをタイル化）
   // =========================================================
   const canvas = document.getElementById("mosaic-canvas");
   const ctx = canvas.getContext("2d");
@@ -2196,81 +2237,118 @@
   let H = window.innerHeight;
   fitCanvasDPR(canvas, ctx, W, H);
 
+  const fbW = 64;
+  const fbH = 64;
   const faceBuffer = document.createElement("canvas");
-  const fbW = 48;
-  const fbH = 60;
   faceBuffer.width = fbW;
   faceBuffer.height = fbH;
   const fCtx = faceBuffer.getContext("2d");
 
-  function buildFaceLuminanceMap() {
+  let mosaicTiles = [];
+  let isPhotoPortrait = false;
+
+  // 画像読み込み前のフォールバック（仮の彫刻シルエット）
+  function buildFallbackTiles() {
     fCtx.fillStyle = "#000000";
     fCtx.fillRect(0, 0, fbW, fbH);
-
-    const headGrad = fCtx.createRadialGradient(fbW * 0.44, fbH * 0.42, 2, fbW * 0.5, fbH * 0.48, fbW * 0.44);
+    const headGrad = fCtx.createRadialGradient(fbW * 0.46, fbH * 0.44, 3, fbW * 0.5, fbH * 0.48, fbW * 0.42);
     headGrad.addColorStop(0, "#ffffff");
-    headGrad.addColorStop(0.55, "#8c8c8c");
-    headGrad.addColorStop(0.85, "#262626");
+    headGrad.addColorStop(0.6, "#787878");
     headGrad.addColorStop(1, "#000000");
-
     fCtx.fillStyle = headGrad;
     fCtx.beginPath();
     fCtx.ellipse(fbW * 0.5, fbH * 0.48, fbW * 0.34, fbH * 0.42, 0, 0, Math.PI * 2);
     fCtx.fill();
 
-    fCtx.fillStyle = "rgba(255,255,255,0.45)";
-    fCtx.beginPath();
-    fCtx.ellipse(fbW * 0.46, fbH * 0.28, fbW * 0.18, fbH * 0.08, -0.1, 0, Math.PI * 2);
-    fCtx.fill();
-
-    fCtx.fillStyle = "#050505";
-    fCtx.beginPath();
-    fCtx.ellipse(fbW * 0.36, fbH * 0.42, fbW * 0.075, fbH * 0.042, 0.08, 0, Math.PI * 2);
-    fCtx.ellipse(fbW * 0.64, fbH * 0.42, fbW * 0.075, fbH * 0.042, -0.08, 0, Math.PI * 2);
-    fCtx.fill();
-
-    fCtx.fillStyle = "rgba(255,255,255,0.7)";
-    fCtx.fillRect(Math.round(fbW * 0.48), Math.round(fbH * 0.42), 2, Math.round(fbH * 0.15));
-    fCtx.fillStyle = "#0a0a0a";
-    fCtx.fillRect(Math.round(fbW * 0.44), Math.round(fbH * 0.58), Math.round(fbW * 0.12), 2);
-
-    fCtx.fillStyle = "#121212";
-    fCtx.beginPath();
-    fCtx.ellipse(fbW * 0.5, fbH * 0.68, fbW * 0.13, fbH * 0.025, 0, 0, Math.PI * 2);
-    fCtx.fill();
-    fCtx.fillStyle = "rgba(255,255,255,0.35)";
-    fCtx.fillRect(Math.round(fbW * 0.43), Math.round(fbH * 0.71), Math.round(fbW * 0.14), 1);
-
-    fCtx.fillStyle = "#1e1e1e";
-    fCtx.fillRect(Math.round(fbW * 0.38), Math.round(fbH * 0.86), Math.round(fbW * 0.24), Math.round(fbH * 0.14));
-
-    return fCtx.getImageData(0, 0, fbW, fbH).data;
+    const data = fCtx.getImageData(0, 0, fbW, fbH).data;
+    const tiles = [];
+    for (let y = 0; y < fbH; y++) {
+      for (let x = 0; x < fbW; x++) {
+        const idx = (y * fbW + x) * 4;
+        const luma = data[idx] / 255;
+        if (luma < 0.08) continue;
+        tiles.push({
+          gx: x - fbW * 0.5,
+          gy: y - fbH * 0.5,
+          tone: luma,
+          depth: luma,
+          sizeFactor: 0.94,
+          scatterX: (Math.random() - 0.5) * 1400,
+          scatterY: (Math.random() - 0.5) * 1100,
+          scatterZ: 0.2 + Math.random() * 2.2,
+          seed: Math.random() * Math.PI * 2
+        });
+      }
+    }
+    mosaicTiles = tiles;
   }
 
-  const facePixels = buildFaceLuminanceMap();
-  const mosaicTiles = [];
+  // 写真から白背景を除き、黒髪・目元・肌の濃淡タイルを生成
+  function buildTilesFromPortrait(img) {
+    fCtx.clearRect(0, 0, fbW, fbH);
+    // アスペクト比を保って中央クロップ描画
+    const minSide = Math.min(img.width, img.height);
+    const sx = (img.width - minSide) * 0.5;
+    const sy = (img.height - minSide) * 0.5;
+    fCtx.drawImage(img, sx, sy, minSide, minSide, 0, 0, fbW, fbH);
 
-  for (let y = 0; y < fbH; y++) {
-    for (let x = 0; x < fbW; x++) {
-      const idx = (y * fbW + x) * 4;
-      const luma = facePixels[idx] / 255;
-      if (luma < 0.06) continue;
+    const imgData = fCtx.getImageData(0, 0, fbW, fbH).data;
+    const tiles = [];
 
-      const distCenter = Math.hypot((x - fbW * 0.5) / fbW, (y - fbH * 0.5) / fbH);
-      const sizeFactor = distCenter > 0.28 && Math.random() > 0.45 ? 1.55 : 0.92;
+    for (let y = 0; y < fbH; y++) {
+      for (let x = 0; x < fbW; x++) {
+        const idx = (y * fbW + x) * 4;
+        const r = imgData[idx];
+        const g = imgData[idx + 1];
+        const b = imgData[idx + 2];
 
-      mosaicTiles.push({
-        gx: x - fbW * 0.5,
-        gy: y - fbH * 0.5,
-        luma,
-        sizeFactor,
-        scatterX: (Math.random() - 0.5) * 1400,
-        scatterY: (Math.random() - 0.5) * 1100,
-        scatterZ: 0.2 + Math.random() * 2.2,
-        seed: Math.random() * Math.PI * 2
-      });
+        // 輝度（0.0 = 真っ黒, 1.0 = 真っ白）
+        const luma = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        // 彩度（背景の白壁は彩度が極めて低い）
+        const maxC = Math.max(r, g, b);
+        const minC = Math.min(r, g, b);
+        const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
+
+        // 白背景の自動除外（輝度が非常に高く、かつ肌色などの色味がない領域をカット）
+        if (luma > 0.83 && sat < 0.14) continue;
+        // フレーム最外周の白飛びもカット
+        if (luma > 0.88) continue;
+
+        // コントラスト補正（黒髪や黒服も輪郭タイルとして残るように底上げ）
+        const contrasted = Math.min(1, Math.max(0.06, (luma - 0.04) * 1.18));
+
+        // 明るいハイライト部分（鼻筋・頬）ほど手前に立体視差をつける
+        const depth = Math.pow(contrasted, 1.2);
+
+        // 輪郭の外側ほど少し大きめの断片を混ぜて破片感を強調
+        const distCenter = Math.hypot((x - fbW * 0.5) / fbW, (y - fbH * 0.5) / fbH);
+        const sizeFactor = distCenter > 0.34 && Math.random() > 0.55 ? 1.28 : 0.92;
+
+        tiles.push({
+          gx: x - fbW * 0.5,
+          gy: y - fbH * 0.5,
+          tone: contrasted,
+          depth,
+          sizeFactor,
+          scatterX: (Math.random() - 0.5) * 1450,
+          scatterY: (Math.random() - 0.5) * 1150,
+          scatterZ: 0.25 + Math.random() * 2.1,
+          seed: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    if (tiles.length > 100) {
+      mosaicTiles = tiles;
+      isPhotoPortrait = true;
     }
   }
+
+  // 初期状態で仮の顔をセットし、同時に portrait.jpg を非同期読み込み
+  buildFallbackTiles();
+  const portraitImg = new Image();
+  portraitImg.onload = () => buildTilesFromPortrait(portraitImg);
+  portraitImg.src = PORTRAIT_SRC;
 
   let faceWasLocked = false;
   let lastScroll = 0;
@@ -2320,21 +2398,23 @@
       const assemble = 1 - Math.pow(1 - raw, 3);
 
       if (fadeOut > 0.01) {
-        const baseCenterX = W > 860 ? W * 0.66 : W * 0.5;
+        const baseCenterX = W > 860 ? W * 0.67 : W * 0.5;
         const baseCenterY = H * (W > 860 ? 0.5 : 0.28);
-        const cellUnit = Math.min(W, H) * 0.0112;
+        // 64×64グリッドに合わせて1タイルの基準サイズを調整
+        const cellUnit = Math.min(W, H) * 0.0086;
 
         const normX = (smoothMx / W - 0.5) * 2;
         const normY = (smoothMy / H - 0.5) * 2;
-        const followX = normX * 58 * assemble;
-        const followY = normY * 42 * assemble;
+        const followX = normX * 54 * assemble;
+        const followY = normY * 38 * assemble;
 
         const targetCenterX = baseCenterX + followX;
         const targetCenterY = baseCenterY + followY;
 
+        // 結像時に浮かぶ極細の観測フレーム
         if (assemble > 0.2) {
-          const frameW = fbW * cellUnit * 0.85;
-          const frameH = fbH * cellUnit * 0.92;
+          const frameW = fbW * cellUnit * 0.96;
+          const frameH = fbH * cellUnit * 0.98;
           ctx.strokeStyle = `rgba(226, 223, 215, ${assemble * 0.14 * fadeOut})`;
           ctx.lineWidth = 1;
           ctx.strokeRect(
@@ -2350,9 +2430,10 @@
 
         for (let i = 0; i < mosaicTiles.length; i++) {
           const tile = mosaicTiles[i];
-          const rowOffset = Math.abs(tile.gy - glitchRow) < 2.6 ? glitchShiftX : 0;
+          const rowOffset = Math.abs(tile.gy - glitchRow) < 2.8 ? glitchShiftX : 0;
 
-          const depthFactor = 0.75 + tile.luma * 0.55;
+          // 明るい部分（鼻筋・頬）ほど大きく動く立体視差
+          const depthFactor = 0.72 + tile.depth * 0.62;
           const tx = baseCenterX + followX * depthFactor + tile.gx * cellUnit + rowOffset;
           const ty = baseCenterY + followY * depthFactor + tile.gy * cellUnit;
 
@@ -2366,25 +2447,28 @@
           const w = cellUnit * tile.sizeFactor * scale;
           const h = cellUnit * tile.sizeFactor * scale;
 
-          const alpha = (0.09 * (1 - assemble) + tile.luma * 0.86 * assemble) * fadeOut;
-          const gray = Math.round(58 + tile.luma * 195);
+          // 黒髪（toneが低い）は濃墨のグレー(38)、肌ハイライトは白銀(242)として描画
+          const gray = Math.round(38 + tile.tone * 204);
+          const tilePresence = 0.45 + tile.tone * 0.55;
+          const alpha = (0.09 * (1 - assemble) + tilePresence * 0.92 * assemble) * fadeOut;
 
           ctx.fillStyle = `rgba(${gray}, ${gray}, ${gray - 4}, ${alpha})`;
-          ctx.fillRect(cx - w * 0.5, cy - h * 0.5, w - 0.8, h - 0.8);
+          ctx.fillRect(cx - w * 0.5, cy - h * 0.5, w - 0.7, h - 0.7);
         }
 
-        if (assemble > 0.45) {
+        // 仮の顔（フォールバック）のときだけ白い目のハイライトを表示
+        if (!isPhotoPortrait && assemble > 0.45) {
           const eyeAlpha = ((assemble - 0.45) / 0.55) * fadeOut;
-          const lookX = Math.max(-1, Math.min(1, (smoothMx - targetCenterX) / (W * 0.35))) * cellUnit * 1.6;
-          const lookY = Math.max(-1, Math.min(1, (smoothMy - targetCenterY) / (H * 0.35))) * cellUnit * 1.1;
+          const lookX = Math.max(-1, Math.min(1, (smoothMx - targetCenterX) / (W * 0.35))) * cellUnit * 2.0;
+          const lookY = Math.max(-1, Math.min(1, (smoothMy - targetCenterY) / (H * 0.35))) * cellUnit * 1.4;
 
           const leftEyeX = targetCenterX - fbW * 0.14 * cellUnit + lookX;
           const rightEyeX = targetCenterX + fbW * 0.14 * cellUnit + lookX;
           const eyesY = targetCenterY - fbH * 0.08 * cellUnit + lookY;
 
           ctx.fillStyle = `rgba(255, 255, 255, ${eyeAlpha * 0.92})`;
-          ctx.fillRect(leftEyeX - cellUnit * 0.6, eyesY - cellUnit * 0.6, cellUnit * 1.3, cellUnit * 1.3);
-          ctx.fillRect(rightEyeX - cellUnit * 0.6, eyesY - cellUnit * 0.6, cellUnit * 1.3, cellUnit * 1.3);
+          ctx.fillRect(leftEyeX - cellUnit * 0.8, eyesY - cellUnit * 0.8, cellUnit * 1.6, cellUnit * 1.6);
+          ctx.fillRect(rightEyeX - cellUnit * 0.8, eyesY - cellUnit * 0.8, cellUnit * 1.6, cellUnit * 1.6);
         }
       }
     }
