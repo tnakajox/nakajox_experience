@@ -5,13 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nakajox Experience — 無色の緑色の実験室 | Colorless Green Ideas</title>
 <meta name="description" content="Nakajox Experience: An interactive digital art archive exploring Chomsky's syntactic paradox, temporal perception, and Japanese Wabi-Sabi minimalism.">
+<link rel="canonical" href="https://tnakajox.github.io/nakajox_experience/">
 <meta property="og:title" content="Nakajox Experience — Colorless Green Ideas">
-<meta property="og:description" content="Nine algorithmic experiments on body, gaze, and system architecture. Featuring 64 FRAGMENTS.">
+<meta property="og:description" content="Nine algorithmic experiments on body, perception, and system architecture. Featuring 64 FRAGMENTS.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://electriclady.xyz/">
+<meta property="og:url" content="https://tnakajox.github.io/nakajox_experience/">
+<meta property="og:image" content="https://tnakajox.github.io/nakajox_experience/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23050505'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23963e33'%3E中%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #050505;
@@ -20,18 +24,18 @@
     --paper-shade: #cfc9ba;
     --ink: #111110;
     --fg: #e2dfd7;
-    --muted: #76746e;
+    --muted: #9a978f;
     --dim: #262523;
     --wabi-rust: #963e33;
-    --line: rgba(226, 223, 215, 0.12);
-    --line-strong: rgba(226, 223, 215, 0.34);
+    --line: rgba(226, 223, 215, 0.14);
+    --line-strong: rgba(226, 223, 215, 0.36);
     --glitch-r: rgba(255, 36, 36, 0.85);
     --glitch-c: rgba(36, 240, 255, 0.85);
-    --typewriter: 'Courier Prime', monospace;
     --display: 'Anton', sans-serif;
     --mincho: 'Shippori Mincho', serif;
     --mono: 'JetBrains Mono', monospace;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --typewriter: var(--mono);
+    --sans: var(--mincho);
   }
 
   * {
@@ -77,7 +81,7 @@
     height: 116%;
     z-index: 4;
     pointer-events: none;
-    opacity: 0.12;
+    opacity: 0.14;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
@@ -99,6 +103,7 @@
   }
 
   #glitch-canvas {
+    display: none;
     position: fixed;
     inset: 0;
     width: 100vw;
@@ -118,15 +123,12 @@
     mix-blend-mode: difference;
   }
 
-  body.glitch-spike main {
-    transform: translateX(-6px) skewX(-0.8deg);
-    filter: contrast(1.5);
-  }
   body.glitch-spike .hero-title,
   body.glitch-spike .chomsky-lead,
   body.glitch-spike .featured-title,
-  body.glitch-spike .zine-header h2 {
-    text-shadow: 5px 0 var(--glitch-r), -5px 0 var(--glitch-c);
+  body.glitch-spike .zine-header h2,
+  body.glitch-spike .colophon-name {
+    text-shadow: 4px 0 var(--glitch-r), -4px 0 var(--glitch-c);
   }
 
   .vertical-rail {
@@ -139,7 +141,7 @@
     font-family: var(--mincho);
     font-size: 11px;
     letter-spacing: 0.46em;
-    color: rgba(226, 223, 215, 0.3);
+    color: rgba(226, 223, 215, 0.35);
     pointer-events: none;
     display: flex;
     align-items: center;
@@ -161,8 +163,7 @@
     align-items: center;
     padding: 16px 5vw;
     border-bottom: 1px solid var(--line);
-    background: rgba(5, 5, 5, 0.86);
-    backdrop-filter: blur(8px);
+    background: rgba(5, 5, 5, 0.94);
     font-family: var(--mincho);
     font-size: 11px;
     letter-spacing: 0.22em;
@@ -181,17 +182,17 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
     border: 1px solid var(--wabi-rust);
     color: var(--wabi-rust);
-    font-size: 9.5px;
+    font-size: 11px;
     font-weight: 700;
   }
 
   .nav-group {
     display: flex;
-    gap: 26px;
+    gap: 24px;
   }
   .nav-group a {
     color: var(--muted);
@@ -246,16 +247,16 @@
     border: 1px solid var(--wabi-rust);
     color: var(--wabi-rust);
     font-family: var(--mincho);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.14em;
-    padding: 2px 6px;
+    padding: 2px 7px;
   }
 
   .hero-jp-sub {
-    font-family: var(--mincho);
-    font-size: 12px;
-    letter-spacing: 0.38em;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
     color: var(--muted);
   }
 
@@ -274,7 +275,7 @@
     margin-top: 8px;
     font-size: clamp(13px, 1.3vw, 16px);
     letter-spacing: 0.44em;
-    color: #9b988f;
+    color: var(--muted);
   }
 
   .wabi-rule {
@@ -290,18 +291,18 @@
 
   .lead-tag {
     font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.24em;
+    font-size: 11px;
+    letter-spacing: 0.18em;
     color: var(--muted);
     margin-bottom: 10px;
   }
 
   .chomsky-lead {
     font-family: var(--typewriter);
-    font-size: clamp(17px, 2.2vw, 26px);
+    font-size: clamp(17px, 2.2vw, 25px);
     font-weight: 400;
     line-height: 1.4;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     color: var(--fg);
     min-height: 1.4em;
   }
@@ -334,7 +335,7 @@
   .chomsky-jp {
     font-family: var(--mincho);
     font-size: clamp(13px, 1.25vw, 15px);
-    color: #b5b2aa;
+    color: #c6c3bb;
     letter-spacing: 0.22em;
     line-height: 1.9;
   }
@@ -342,9 +343,9 @@
   .chomsky-en {
     font-family: var(--sans);
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--muted);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     line-height: 1.75;
   }
 
@@ -355,39 +356,40 @@
     padding-top: 18px;
     border-top: 1px solid var(--line);
     font-family: var(--mincho);
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 0.26em;
     color: var(--muted);
   }
 
   /* =========================================
-     STAGE 02: スクロールで顔が形成される瞬間
+     STAGE 02: スクロールで顔が形成され、滞在する空間
      ========================================= */
   .mosaic-zone {
     position: relative;
     z-index: 10;
-    min-height: 115vh;
-    padding: 100px 7vw;
+    min-height: 260vh;
+    padding: 0 7vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     pointer-events: none;
   }
 
   .raw-caption {
+    position: sticky;
+    top: 22vh;
     max-width: 390px;
-    background: rgba(5, 5, 5, 0.88);
+    background: rgba(5, 5, 5, 0.94);
     border: 1px solid var(--line);
     border-left: 2px solid var(--wabi-rust);
     padding: 28px 30px;
-    backdrop-filter: blur(6px);
     pointer-events: auto;
   }
 
   .raw-caption .cap-id {
     font-family: var(--mono);
-    font-size: 9.5px;
-    letter-spacing: 0.22em;
+    font-size: 11px;
+    letter-spacing: 0.18em;
     color: var(--muted);
     margin-bottom: 10px;
   }
@@ -404,10 +406,10 @@
 
   .raw-caption p {
     font-family: var(--mincho);
-    font-size: 12.5px;
+    font-size: 13px;
     line-height: 2.05;
     letter-spacing: 0.07em;
-    color: #b0ada5;
+    color: #c2bfb7;
   }
 
   .raw-caption p.en-note {
@@ -416,9 +418,8 @@
     border-top: 1px solid var(--line);
     font-family: var(--sans);
     font-size: 11.5px;
-    font-weight: 300;
     line-height: 1.7;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.03em;
     color: var(--muted);
   }
 
@@ -455,8 +456,8 @@
     display: flex;
     justify-content: space-between;
     font-family: var(--mono);
-    font-size: 9.5px;
-    letter-spacing: 0.18em;
+    font-size: 11px;
+    letter-spacing: 0.14em;
     color: var(--muted);
     padding-bottom: 10px;
     border-bottom: 1px solid var(--line);
@@ -474,8 +475,8 @@
     display: flex;
     justify-content: space-between;
     font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.16em;
+    font-size: 11px;
+    letter-spacing: 0.12em;
     color: var(--muted);
     padding-top: 10px;
     margin-top: 12px;
@@ -493,8 +494,8 @@
     align-items: center;
     gap: 10px;
     font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.22em;
+    font-size: 11px;
+    letter-spacing: 0.18em;
     color: var(--fg);
   }
 
@@ -529,13 +530,12 @@
     font-size: 13.5px;
     line-height: 2.05;
     letter-spacing: 0.06em;
-    color: #b5b2aa;
+    color: #c2bfb7;
   }
 
   .featured-desc-en {
     font-family: var(--sans);
     font-size: 12.5px;
-    font-weight: 300;
     line-height: 1.8;
     color: var(--muted);
   }
@@ -548,7 +548,7 @@
   }
 
   /* =========================================
-     STAGE 04: カテゴリ分類付き・九つの実験標本アーカイブ
+     STAGE 04: 二領域・九つの実験標本アーカイブ
      ========================================= */
   .archive-section {
     position: relative;
@@ -560,6 +560,7 @@
     justify-content: center;
     align-items: center;
     background: #070706;
+    border-bottom: 1px solid var(--line-strong);
   }
 
   .zine-header {
@@ -584,8 +585,8 @@
 
   .zine-kicker-bar {
     font-family: var(--mono);
-    font-size: 9.5px;
-    letter-spacing: 0.22em;
+    font-size: 11px;
+    letter-spacing: 0.18em;
     color: var(--muted);
   }
 
@@ -619,7 +620,6 @@
     padding: 4px 12px;
   }
 
-  /* 三つの実験領域（カテゴリフィルターバー） */
   .cat-filter-bar {
     width: 100%;
     max-width: 1280px;
@@ -634,7 +634,7 @@
     border: 1px solid var(--line);
     color: var(--muted);
     font-family: var(--mincho);
-    font-size: 11.5px;
+    font-size: 12px;
     letter-spacing: 0.16em;
     padding: 8px 16px;
     display: inline-flex;
@@ -645,9 +645,9 @@
 
   .cat-tab span.en-sub {
     font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    opacity: 0.7;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
   }
 
   .cat-tab:hover, .cat-tab:focus-visible {
@@ -666,30 +666,13 @@
     position: relative;
     width: 100%;
     max-width: 1320px;
-    height: 465px;
+    height: 410px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 36px 36px;
     border-top: 1px solid rgba(255,255,255,0.14);
     border-bottom: 1px solid rgba(255,255,255,0.14);
   }
-
-  .crop-mark {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    border-color: rgba(226, 223, 215, 0.3);
-    border-style: solid;
-    pointer-events: none;
-  }
-  .crop-tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
-  .crop-tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
-  .crop-bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
-  .crop-br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
 
   .cf-track {
     position: relative;
@@ -702,7 +685,7 @@
 
   .mag-polaroid {
     position: absolute;
-    width: 304px;
+    width: 300px;
     background: var(--paper);
     color: var(--ink);
     padding: 0 0 16px;
@@ -731,7 +714,6 @@
       0 6px 14px rgba(0, 0, 0, 0.92);
   }
 
-  /* 標本マウスオーバー時：和紙の透かしのようにふっと薄くなり、枯朱の枠線が灯る */
   .mag-polaroid:hover {
     opacity: 0.78 !important;
     border-color: var(--wabi-rust);
@@ -741,16 +723,10 @@
       0 0 0 1px var(--wabi-rust);
   }
 
-  .mag-polaroid:hover .mag-running-head {
-    background: rgba(207, 201, 186, 0.72);
-    border-bottom-color: var(--wabi-rust);
-  }
-
   .mag-polaroid:hover .mag-headline {
     color: var(--wabi-rust);
   }
 
-  /* いずれかの標本にホバーしている間、他の標本をさらに静かに沈ませる */
   .cf-track:hover .mag-polaroid:not(:hover) {
     opacity: 0.45 !important;
   }
@@ -760,31 +736,9 @@
     outline-offset: 4px;
   }
 
-  .mag-running-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 7px 12px;
-    border-bottom: 1.5px solid var(--ink);
-    font-family: var(--mincho);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    background: var(--paper-shade);
-    transition: background 0.28s ease, border-color 0.28s ease;
-  }
-
-  .mag-page-num {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 1px 5px;
-    font-family: var(--mono);
-    font-size: 8px;
-  }
-
   .mag-photo-wrap {
     position: relative;
-    margin: 11px 12px 0;
+    margin: 12px 12px 0;
     aspect-ratio: 1.12 / 1;
     background: #060605;
     border: 1.5px solid var(--ink);
@@ -797,15 +751,6 @@
     height: 100%;
   }
 
-  .halftone-dots {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0);
-    background-size: 4px 4px;
-    pointer-events: none;
-    z-index: 2;
-  }
-
   .mag-sticker {
     position: absolute;
     top: 8px;
@@ -814,41 +759,15 @@
     background: var(--paper);
     color: var(--ink);
     font-family: var(--mono);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.12em;
-    padding: 2px 6px;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
     border: 1px solid var(--ink);
   }
 
-  .mag-kanji-stamp {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    z-index: 3;
-    border: 1px solid var(--wabi-rust);
-    background: rgba(8, 8, 7, 0.88);
-    color: #c85a4d;
-    font-family: var(--mincho);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 1px 5px;
-    line-height: 1.2;
-  }
-
-  .mag-film-code {
-    position: absolute;
-    bottom: 7px;
-    right: 8px;
-    z-index: 3;
-    font-family: var(--typewriter);
-    font-size: 9px;
-    color: rgba(226, 223, 215, 0.8);
-    letter-spacing: 0.1em;
-  }
-
   .mag-article-box {
-    padding: 10px 12px 0;
+    padding: 12px 14px 0;
     position: relative;
     z-index: 2;
   }
@@ -857,61 +776,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: var(--mono);
-    font-size: 8.5px;
-    letter-spacing: 0.12em;
-    color: #4a4740;
+    font-family: var(--mincho);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #3d3b35;
     border-bottom: 1px solid rgba(17, 17, 16, 0.25);
-    padding-bottom: 4px;
+    padding-bottom: 5px;
   }
 
   .mag-headline {
-    margin-top: 6px;
+    margin-top: 8px;
     font-family: var(--display);
-    font-size: 25px;
+    font-size: 26px;
     letter-spacing: 0.02em;
-    line-height: 1.02;
+    line-height: 1.04;
     color: var(--ink);
     text-transform: uppercase;
     transition: color 0.25s ease;
-  }
-
-  .mag-deck {
-    margin-top: 6px;
-    font-family: var(--mincho);
-    font-size: 10.5px;
-    line-height: 1.55;
-    color: #2c2a26;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .mag-foot-strip {
-    margin-top: 9px;
-    padding-top: 6px;
-    border-top: 1px dashed rgba(17, 17, 16, 0.35);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--mono);
-    font-size: 8px;
-    letter-spacing: 0.14em;
-    color: #4f4c45;
-  }
-
-  .barcode-bars {
-    display: inline-block;
-    width: 46px;
-    height: 10px;
-    background: repeating-linear-gradient(
-      90deg,
-      #111110 0px, #111110 2px,
-      transparent 2px, transparent 4px,
-      #111110 4px, #111110 5px,
-      transparent 5px, transparent 8px
-    );
   }
 
   .cf-controls {
@@ -965,7 +847,7 @@
     border-left: 4px solid var(--wabi-rust);
     padding: 28px 34px;
     display: grid;
-    grid-template-columns: 185px 1fr auto;
+    grid-template-columns: 195px 1fr auto;
     align-items: center;
     gap: 28px;
   }
@@ -984,11 +866,11 @@
   }
   .ed-meta .ed-cat {
     margin-top: 10px;
-    font-family: var(--mono);
-    font-size: 9.5px;
+    font-family: var(--mincho);
+    font-size: 11px;
     letter-spacing: 0.12em;
     color: var(--muted);
-    line-height: 1.55;
+    line-height: 1.65;
   }
 
   .ed-body .ed-title {
@@ -1004,14 +886,13 @@
     font-size: 13.5px;
     line-height: 1.95;
     letter-spacing: 0.05em;
-    color: #c2bfb7;
+    color: #d2cfc7;
   }
 
   .ed-body .ed-desc-en {
     margin-top: 8px;
     font-family: var(--sans);
     font-size: 12px;
-    font-weight: 300;
     line-height: 1.7;
     color: var(--muted);
   }
@@ -1038,10 +919,199 @@
     outline: none;
   }
 
+  /* =========================================
+     STAGE 05: CONTEMPORARY JAPANESE COLOPHON (四、奥付)
+     ========================================= */
+  .colophon-section {
+    position: relative;
+    z-index: 10;
+    padding: 104px 7vw 96px;
+    background: #050505;
+  }
+
+  .colophon-container {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .colophon-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 2px solid var(--fg);
+    border-bottom: 1px solid var(--line-strong);
+    padding: 16px 0;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .colophon-kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .colophon-heading {
+    font-family: var(--mincho);
+    font-size: clamp(22px, 2.8vw, 32px);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    color: var(--fg);
+  }
+
+  .colophon-loc {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+  }
+
+  .colophon-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    align-items: start;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .colophon-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .colophon-name {
+    font-family: var(--display);
+    font-size: clamp(44px, 5.4vw, 72px);
+    line-height: 0.96;
+    letter-spacing: 0.02em;
+    color: var(--fg);
+    margin-bottom: 20px;
+  }
+
+  .colophon-jp-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .colophon-jp-name {
+    font-family: var(--mincho);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    color: var(--paper);
+  }
+
+  .hanko-square {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid var(--wabi-rust);
+    color: var(--wabi-rust);
+    font-family: var(--mincho);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .colophon-role {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+  }
+
+  .practice-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .practice-list li {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: var(--fg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .practice-list li span.jp-tag {
+    font-family: var(--mincho);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .colophon-studio-bar {
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .studio-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .studio-name {
+    font-family: var(--mincho);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--fg);
+  }
+
+  .studio-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+
+  .colophon-aside {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .rakkan-note {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: italic;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
   @media (max-width: 860px) {
-    .featured-wrap {
+    .raw-caption {
+      top: 52vh;
+      max-width: none;
+    }
+    .raw-caption p.en-note {
+      display: none;
+    }
+    .featured-wrap,
+    .colophon-grid {
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: 32px;
     }
     .editorial-sheet {
       grid-template-columns: 1fr;
@@ -1086,6 +1156,12 @@
     .cf-controls { display: none; }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .cursor-block { animation: none; }
+    .mag-polaroid { transition: none; }
+  }
+
   footer {
     position: relative;
     z-index: 10;
@@ -1096,14 +1172,14 @@
     gap: 12px;
     justify-content: space-between;
     font-family: var(--mincho);
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 0.2em;
     color: var(--muted);
     background: #050505;
   }
 </style>
 </head>
-<body class="brush-active">
+<body>
 
 <div class="asanoha-bg"></div>
 <canvas id="mosaic-canvas"></canvas>
@@ -1118,14 +1194,15 @@
 
 <header>
   <a href="#top" class="brand-lockup">
-    <span class="hanko-mini">実</span>
+    <span class="hanko-mini">中</span>
     <span>Nakajox Experience</span>
   </a>
-  <div id="mosaic-readout" style="color:var(--muted);font-family:var(--mono);font-size:9.5px;">SILENCE // 0%</div>
+  <div id="mosaic-readout" style="color:var(--muted);font-family:var(--mono);font-size:11px;">SILENCE // 0%</div>
   <nav class="nav-group" aria-label="主要ナビゲーション">
     <a href="#mosaic">一、輪郭</a>
     <a href="#featured">二、主標本</a>
     <a href="#archive">三、標本目録</a>
+    <a href="#colophon">四、奥付</a>
   </nav>
 </header>
 
@@ -1133,14 +1210,14 @@
   <!-- STAGE 01: 静寂のヒーロー -->
   <section class="hero-void">
     <div class="hero-meta-top">
-      <span>東京 ／／ 観測と実験の記録</span>
+      <span>横浜 ／／ 観測と実験の記録</span>
       <span>MONOGRAPH // 09 WORKS</span>
     </div>
 
     <div class="hero-center-block">
       <div class="hero-jp-line">
         <span class="hanko-seal">実験記録</span>
-        <span class="hero-jp-sub">静寂と破綻のあいだ</span>
+        <span class="hero-jp-sub">UNIVERSAL WILL TO BECOME.</span>
       </div>
 
       <h1 class="hero-title">
@@ -1160,7 +1237,7 @@
             無色の緑色の考えが猛烈に眠る。とか言うたりして
           </p>
           <p class="chomsky-en">
-            Grammatically valid yet semantically void — or something like that. Interactive experiments on body, gaze, and system architecture.
+            Grammatically valid yet semantically void — or something like that. Interactive experiments on body, perception, and system architecture.
           </p>
         </div>
       </div>
@@ -1191,12 +1268,12 @@
     <div class="featured-wrap">
       <div class="matrix-stage-box">
         <div class="matrix-top-bar">
-          <span>KEYNOTE SPECIMEN // TIME &amp; SELF</span>
+          <span>KEYNOTE SPECIMEN // 静止 ↔ 運動</span>
           <span>8×8 SPATIOTEMPORAL DELAY</span>
         </div>
         <canvas id="hero-work-canvas" aria-label="64 FRAGMENTS インタラクティブプレビュー"></canvas>
         <div class="matrix-foot-bar">
-          <span>MOVE CURSOR TO RIPPLE TIME</span>
+          <span>SIMULATION (NO CAMERA) // MOVE CURSOR</span>
           <span>64 CELLS / ASYNC PHASE</span>
         </div>
       </div>
@@ -1204,7 +1281,7 @@
       <div class="featured-info">
         <div class="featured-badge">
           <span class="seal">主標本</span>
-          <span>FEATURED EXPERIMENT // TIME &amp; SELF</span>
+          <span>FEATURED EXPERIMENT // BODY &amp; PERCEPTION</span>
         </div>
         <h2 class="featured-title">64 FRAGMENTS</h2>
         <p class="featured-question">
@@ -1224,40 +1301,32 @@
     </div>
   </section>
 
-  <!-- STAGE 04: カテゴリ分類付き・全9作品の実験標本アーカイブ -->
+  <!-- STAGE 04: 二領域・九つの実験標本アーカイブ -->
   <section class="archive-section" id="archive">
     <div class="zine-header">
       <div class="zine-header-left">
-        <span class="zine-kicker-bar">COMPLETE ARCHIVE // 09 EXPERIMENTS IN 03 DOMAINS</span>
-        <h2>三領域・九つの実験標本</h2>
+        <span class="zine-kicker-bar">COMPLETE ARCHIVE // 09 EXPERIMENTS IN 02 DOMAINS</span>
+        <h2>二領域・九つの実験標本</h2>
       </div>
       <div class="zine-right-meta">
-        <span class="zine-issue">第一号 — 網点印刷・ライブ観測目録</span>
+        <span class="zine-issue">標本目録</span>
         <span class="zine-counter" id="cf-counter">標本 01 / 09</span>
       </div>
     </div>
 
-    <!-- カテゴリ切替タブ -->
     <div class="cat-filter-bar" role="tablist" aria-label="実験領域カテゴリ">
       <button type="button" class="cat-tab active" data-cat="ALL" role="tab" aria-selected="true">
         全標本 [09] <span class="en-sub">ALL</span>
       </button>
       <button type="button" class="cat-tab" data-cat="BODY" role="tab" aria-selected="false">
-        壱・身体と時間 [04] <span class="en-sub">BODY &amp; TIME</span>
-      </button>
-      <button type="button" class="cat-tab" data-cat="GAZE" role="tab" aria-selected="false">
-        弐・視線と認識 [02] <span class="en-sub">GAZE &amp; PERCEPTION</span>
+        壱・身体と知覚 [05] <span class="en-sub">BODY &amp; PERCEPTION</span>
       </button>
       <button type="button" class="cat-tab" data-cat="SYSTEM" role="tab" aria-selected="false">
-        参・計算と構造 [03] <span class="en-sub">SYSTEM &amp; ORBIT</span>
+        弐・計算と構造 [04] <span class="en-sub">SYSTEM &amp; STRUCTURE</span>
       </button>
     </div>
 
     <div class="cf-stage" id="cf-stage" role="region" aria-label="実験標本アーカイブ">
-      <div class="crop-mark crop-tl"></div>
-      <div class="crop-mark crop-tr"></div>
-      <div class="crop-mark crop-bl"></div>
-      <div class="crop-mark crop-br"></div>
       <div class="cf-track" id="cf-track"></div>
     </div>
 
@@ -1270,7 +1339,7 @@
     <div class="editorial-sheet">
       <div class="ed-meta">
         <div class="ed-num" id="ins-num">壱</div>
-        <div class="ed-cat" id="ins-kicker">壱・身体と時間<br>BODY &amp; TIME</div>
+        <div class="ed-cat" id="ins-kicker">壱・身体と知覚<br>BODY &amp; PERCEPTION<br>静止 ↔ 運動</div>
       </div>
       <div class="ed-body">
         <div class="ed-title" id="ins-title">64 FRAGMENTS</div>
@@ -1280,11 +1349,60 @@
       <a href="#" target="_blank" rel="noopener" class="launch-btn" id="ins-link">標本を開く ↗</a>
     </div>
   </section>
+
+  <!-- STAGE 05: CONTEMPORARY JAPANESE COLOPHON (四、奥付) -->
+  <section class="colophon-section" id="colophon">
+    <div class="colophon-container">
+      <div class="colophon-top">
+        <div>
+          <span class="colophon-kicker">CONTEMPORARY JAPANESE COLOPHON // 004</span>
+          <h2 class="colophon-heading">四、奥付 — 作家とスタジオ</h2>
+        </div>
+        <div class="colophon-loc">YOKOHAMA / JAPAN — 2026</div>
+      </div>
+
+      <div class="colophon-grid">
+        <div>
+          <div class="colophon-label">01 / IDENTITY</div>
+          <div class="colophon-name">TOMOHIRO<br>NAKAJO</div>
+          <div class="colophon-jp-row">
+            <span class="colophon-jp-name">中城 朋洋</span>
+            <span class="hanko-square" aria-label="作家印">中</span>
+          </div>
+          <div class="colophon-role">CREATOR / ARTIST</div>
+        </div>
+
+        <div>
+          <div class="colophon-label">02 / CREATIVE PRACTICE</div>
+          <ul class="practice-list">
+            <li><span>WEB / DIGITAL EXPRESSION</span><span class="jp-tag">空間構造</span></li>
+            <li><span>ART / VISUAL EXPERIMENT</span><span class="jp-tag">知覚実験</span></li>
+            <li><span>VIDEO / MOTION</span><span class="jp-tag">時間と運動</span></li>
+            <li><span>DESIGN / ART DIRECTION</span><span class="jp-tag">造形設計</span></li>
+            <li><span>POP ART / CONTEMPORARY CULTURE</span><span class="jp-tag">大衆文化</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="colophon-studio-bar">
+        <div class="studio-block">
+          <div class="colophon-label" style="margin-bottom:2px;">03 / STUDIO</div>
+          <div class="studio-name">electriclady inc.</div>
+          <div class="studio-sub">INDEPENDENT CREATIVE STUDIO — YOKOHAMA, JAPAN</div>
+        </div>
+
+        <div class="colophon-aside">
+          <span class="rakkan-note">Why so serious?</span>
+          <span class="hanko-square" aria-label="スタジオ印">印</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
   <span>Nakajox Experience — 無色の緑色の実験室</span>
-  <span>© electriclady.xyz</span>
+  <span>© electriclady inc.</span>
 </footer>
 
 <script>
@@ -1295,6 +1413,11 @@
     canvas.height = Math.floor(cssH * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     return { w: cssW, h: cssH };
+  }
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (matchMedia("(pointer:fine)").matches && !reduceMotion.matches) {
+    document.body.classList.add("brush-active");
   }
 
   // =========================================================
@@ -1310,13 +1433,15 @@
   let glitchRafId = null;
 
   function triggerGlitch(power = 1.1) {
+    if (reduceMotion.matches) return;
     glitchIntensity = Math.min(2.0, glitchIntensity + power);
     document.body.classList.add("glitch-spike");
     setTimeout(() => {
       document.body.classList.remove("glitch-spike");
-    }, 120);
+    }, 130);
 
     if (!glitchRafId) {
+      glitchCanvas.style.display = "block";
       glitchRafId = requestAnimationFrame(renderGlitchBurst);
     }
   }
@@ -1351,6 +1476,7 @@
     } else {
       gCtx.clearRect(0, 0, gW, gH);
       glitchIntensity = 0;
+      glitchCanvas.style.display = "none";
       glitchRafId = null;
     }
   }
@@ -1403,6 +1529,8 @@
     my = e.clientY;
     hasMoved = true;
 
+    if (reduceMotion.matches) return;
+
     if (!currentStroke || now - lastMoveTime > 140) {
       currentStroke = { points: [] };
       strokes.push(currentStroke);
@@ -1428,6 +1556,7 @@
   });
 
   window.addEventListener("mousedown", (e) => {
+    if (reduceMotion.matches) return;
     const now = performance.now();
     splatters.push({ x: e.clientX, y: e.clientY, r: 11.0, t: now, life: 900 });
     for (let k = 0; k < 9; k++) {
@@ -1542,10 +1671,16 @@
       }
     } else {
       subEl.classList.add("show");
-      triggerGlitch(1.2);
+      triggerGlitch(1.25);
     }
   }
-  setTimeout(typeNextChar, 300);
+
+  if (reduceMotion.matches) {
+    typedEl.textContent = sentence;
+    subEl.classList.add("show");
+  } else {
+    setTimeout(typeNextChar, 300);
+  }
 
   // =========================================================
   // 4. 主役作品『64 FRAGMENTS』インタラクティブ8×8時空間ステージ
@@ -1620,8 +1755,8 @@
       }
 
       hwCtx.fillStyle = luma > 0.55 ? "rgba(10,10,10,0.65)" : "rgba(226,223,215,0.45)";
-      hwCtx.font = `${Math.max(8, Math.floor(cellW * 0.19))}px "JetBrains Mono", monospace`;
-      hwCtx.fillText(String(i + 1).padStart(2, "0"), x + 4, y + cellW * 0.26);
+      hwCtx.font = `${Math.max(11, Math.floor(cellW * 0.19))}px "JetBrains Mono", monospace`;
+      hwCtx.fillText(String(i + 1).padStart(2, "0"), x + 4, y + cellW * 0.3);
     }
 
     requestAnimationFrame(renderHeroWork64);
@@ -1639,17 +1774,15 @@
   featuredObserver.observe(document.getElementById("featured"));
 
   // =========================================================
-  // 5. 三つの実験領域（カテゴリ別）全9作品アーカイブ
-  //    ※64 FRAGMENTS を含み、HARMONIC TRACE は SHAPE OF WAVES へ統合
+  // 5. 二領域（壱・身体と知覚 [05] / 弐・計算と構造 [04]）全9標本
   // =========================================================
   const ALL_WORKS = [
-    // --- 壱・身体と時間 (BODY & TIME) [4作品] ---
     {
-      id: "001", kanji: "壱", page: "P.01", category: "BODY",
-      catLabel: "壱・身体と時間<br>BODY & TIME",
+      id: "001", kanji: "壱", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "静止 ↔ 運動",
       sticker: "KEYNOTE // 8×8",
       title: "64 FRAGMENTS",
-      sub: "Spatiotemporal Matrix",
       desc: "過去の自分は今の自分と同じ人間なのか？8×8の断片に異なる時間遅延を与え、動きによって自己の輪郭がほどける時空間実験。",
       descEn: "Is my past self still the same person as I am now? An 8x8 matrix with staggered temporal delays that fractures the self through motion.",
       url: "https://tnakajox.github.io/64FRAGMENTS/",
@@ -1673,11 +1806,11 @@
       }
     },
     {
-      id: "002", kanji: "弐", page: "P.06", category: "BODY",
-      catLabel: "壱・身体と時間<br>BODY & TIME",
+      id: "002", kanji: "弐", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "現在 ↔ 軌跡",
       sticker: "SLIT-SCAN",
       title: "THE INVISIBLE LINE",
-      sub: "Temporal Slit Sculpture",
       desc: "時間は形にできるのか？1本のスリットが現在を切り取り続け、過ぎ去った身体の動きを空間の彫刻へと変換する。",
       descEn: "Can time be sculpted? A single optical slit slices the present moment, extruding human motion into spatial form.",
       url: "https://tnakajox.github.io/the-invisible-line/",
@@ -1696,11 +1829,11 @@
       }
     },
     {
-      id: "003", kanji: "参", page: "P.11", category: "BODY",
-      catLabel: "壱・身体と時間<br>BODY & TIME",
-      sticker: "SILVER HALIDE",
+      id: "003", kanji: "参", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "無色 ↔ 色彩",
+      sticker: "CHROMA",
       title: "STILLNESS IN COLOR",
-      sub: "Kinetic Chroma Derivative",
       desc: "動く身体の軌跡だけに遅れて色彩が宿り、ピタッと立ち止まれば銀塩のモノクロームへと凍りつく光学実験。",
       descEn: "Color emerges only in the delayed wake of bodily motion, freezing back into silver-halide monochrome upon stillness.",
       url: "https://tnakajox.github.io/STILLNESS-IN-COLOR/",
@@ -1720,11 +1853,11 @@
       }
     },
     {
-      id: "004", kanji: "肆", page: "P.16", category: "BODY",
-      catLabel: "壱・身体と時間<br>BODY & TIME",
-      sticker: "ACOUSTIC FORM",
+      id: "004", kanji: "肆", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "音 ↔ 形",
+      sticker: "WAVEFORM",
       title: "SHAPE OF WAVES",
-      sub: "Harmonic Resonance Sculpture",
       desc: "目に見えない波動や音の振動に輪郭を与える。干渉し合う波紋が立ち上がり、空間に幾何学的な彫刻を編む。",
       descEn: "Giving tangible form to invisible acoustic vibrations. Interfering ripples rise to weave geometric sculptures in space.",
       url: "https://tnakajox.github.io/shapeofwaves/",
@@ -1747,14 +1880,12 @@
         }
       }
     },
-
-    // --- 弐・視線と認識 (GAZE & PERCEPTION) [2作品] ---
     {
-      id: "005", kanji: "伍", page: "P.21", category: "GAZE",
-      catLabel: "弐・視線と認識<br>GAZE & PERCEPTION",
-      sticker: "SURVEILLANCE",
+      id: "005", kanji: "伍", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "見る ↔ 見られる",
+      sticker: "GAZE",
       title: "THE WATCHED",
-      sub: "Observer & Gaze Tracking",
       desc: "見ることは、見られることでもある。無数の視線が鑑賞者の存在を捕捉・追跡し、観測者と被写体の立場を反転させる。",
       descEn: "To look is also to be seen. A field of gazes locks onto and tracks your presence, inverting observer and observed.",
       url: "https://tnakajox.github.io/the-watched/",
@@ -1783,11 +1914,11 @@
       }
     },
     {
-      id: "006", kanji: "陸", page: "P.26", category: "GAZE",
-      catLabel: "弐・視線と認識<br>GAZE & PERCEPTION",
+      id: "006", kanji: "陸", category: "SYSTEM",
+      catLabel: "弐・計算と構造<br>SYSTEM & STRUCTURE",
+      pair: "完成 ↔ 未完成",
       sticker: "CRITIQUE",
       title: "しかし (HOWEVER)",
-      sub: "Synthetic Critique Loop",
       desc: "批評と改稿を無限に繰り返すシステムに対し、最後に「完成」の停止ボタンを押すのはAIではなく人間である。",
       descEn: "Against a machine trapped in infinite self-critique and revision, only a human can press stop and declare completion.",
       url: "https://tnakajox.github.io/however/",
@@ -1803,14 +1934,12 @@
         }
       }
     },
-
-    // --- 参・計算と構造 (SYSTEM & ORBIT) [3作品] ---
     {
-      id: "007", kanji: "漆", page: "P.31", category: "SYSTEM",
-      catLabel: "参・計算と構造<br>SYSTEM & ORBIT",
+      id: "007", kanji: "漆", category: "SYSTEM",
+      catLabel: "弐・計算と構造<br>SYSTEM & STRUCTURE",
+      pair: "空 ↔ 大地",
       sticker: "LIVE API",
       title: "WHERE IS THE CLOUD?",
-      sub: "Data Centers & Submarine Cables",
       desc: "クラウドは空の上にはない。世界のデータセンターの物理座標と公開ステータスAPIをリアルタイム観測する。",
       descEn: "The cloud is not in the sky. Real-time observation of physical data center coordinates and live status APIs across the globe.",
       url: "https://tnakajox.github.io/where-is-the-cloud/",
@@ -1835,11 +1964,11 @@
       }
     },
     {
-      id: "008", kanji: "捌", page: "P.36", category: "SYSTEM",
-      catLabel: "参・計算と構造<br>SYSTEM & ORBIT",
+      id: "008", kanji: "捌", category: "SYSTEM",
+      catLabel: "弐・計算と構造<br>SYSTEM & STRUCTURE",
+      pair: "遠い ↔ 頭上",
       sticker: "ORBIT // SGP4",
       title: "ABOVE US",
-      sub: "360° Satellite Radar",
       desc: "公開軌道要素（TLE）から頭上を通過する不可視の人工衛星群をブラウザ内で推算し、現在地との接続線を可視化する。",
       descEn: "Browser-based SGP4 orbital propagation tracking invisible satellites passing overhead from live TLE datasets.",
       url: "https://tnakajox.github.io/above-us/",
@@ -1864,11 +1993,11 @@
       }
     },
     {
-      id: "009", kanji: "玖", page: "P.41", category: "SYSTEM",
-      catLabel: "参・計算と構造<br>SYSTEM & ORBIT",
+      id: "009", kanji: "玖", category: "SYSTEM",
+      catLabel: "弐・計算と構造<br>SYSTEM & STRUCTURE",
+      pair: "遠回り ↔ 近道",
       sticker: "ANNEALING",
       title: "DETOUR TO SHORTCUT",
-      sub: "Simulated Annealing TSP",
       desc: "遠回りは近道を探せるのか？焼きなまし法が局所解を抜け出し最適経路を見つける過程を計器化する。",
       descEn: "Can a detour find a shortcut? Instrumenting simulated annealing as it escapes local minima to solve optimal routes.",
       url: "https://tnakajox.github.io/santas-route/",
@@ -1927,28 +2056,13 @@
       card.setAttribute("role", "button");
       card.setAttribute("aria-label", `${w.title} を選択`);
       card.innerHTML = `
-        <div class="mag-running-head">
-          <span>Nakajox // ${w.catLabel.split("<br>")[0]}</span>
-          <span class="mag-page-num">${w.page}</span>
-        </div>
         <div class="mag-photo-wrap">
           <span class="mag-sticker">${w.sticker}</span>
-          <span class="mag-kanji-stamp">${w.kanji}</span>
-          <div class="halftone-dots"></div>
           <canvas class="work-live-canvas"></canvas>
-          <span class="mag-film-code">NEG.${w.id}-A</span>
         </div>
         <div class="mag-article-box">
-          <div class="mag-kicker-row">
-            <span>FIG. ${w.id}</span>
-            <span>${w.sub.toUpperCase()}</span>
-          </div>
+          <div class="mag-kicker-row"><span>FIG. ${w.id}</span><span>${w.pair}</span></div>
           <h3 class="mag-headline">${w.title}</h3>
-          <p class="mag-deck">${w.desc}</p>
-          <div class="mag-foot-strip">
-            <span>LIVE ALGORITHM PREVIEW</span>
-            <span class="barcode-bars"></span>
-          </div>
         </div>
       `;
       const c = card.querySelector("canvas");
@@ -1979,7 +2093,7 @@
 
   function selectCard(idx, withGlitch = true) {
     if (withGlitch && idx !== activeIdx) {
-      triggerGlitch(1.0);
+      triggerGlitch(0.55);
     }
     activeIdx = Math.max(0, Math.min(filteredWorks.length - 1, idx));
     cfSlider.value = activeIdx;
@@ -1988,7 +2102,7 @@
     const totalStr = String(filteredWorks.length).padStart(2, "0");
     cfCounter.textContent = `標本 ${String(activeIdx + 1).padStart(2, "0")} / ${totalStr}`;
     insNum.textContent = w.kanji;
-    insKicker.innerHTML = w.catLabel;
+    insKicker.innerHTML = w.catLabel + "<br>" + w.pair;
     insTitle.textContent = w.title;
     insDesc.textContent = w.desc;
     insDescEn.textContent = w.descEn;
@@ -2033,7 +2147,6 @@
       });
       tab.classList.add("active");
       tab.setAttribute("aria-selected", "true");
-      triggerGlitch(0.85);
       buildArchiveDeck(tab.dataset.cat);
     });
   });
@@ -2075,7 +2188,7 @@
   buildArchiveDeck("ALL");
 
   // =========================================================
-  // 6. デジタルモザイク顔（スクロール結像＋スクロールグリッチ＋マウスの動き・視線追従）
+  // 6. デジタルモザイク顔（#mosaic基準で結像＋一定時間滞在＋視線追従）
   // =========================================================
   const canvas = document.getElementById("mosaic-canvas");
   const ctx = canvas.getContext("2d");
@@ -2159,26 +2272,32 @@
     }
   }
 
-  let scrollRatio = 0;
-  let lastScroll = 0;
   let faceWasLocked = false;
+  let lastScroll = 0;
   const mosaicReadout = document.getElementById("mosaic-readout");
+  const mosaicSec = document.getElementById("mosaic");
+
+  function mosaicProgress() {
+    const r = mosaicSec.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const s = vh - r.top;
+    const raw = Math.min(1, Math.max(0, (s - 0.3 * vh) / (0.8 * vh)));
+    const fadeOut = 1 - Math.min(1, Math.max(0, (s - (r.height - 0.6 * vh)) / (0.6 * vh)));
+    return { raw, fadeOut };
+  }
 
   window.addEventListener("scroll", () => {
-    const maxS = Math.max(1, document.body.scrollHeight - window.innerHeight);
-    scrollRatio = Math.min(1, Math.max(0, window.scrollY / maxS));
-
-    if (Math.abs(window.scrollY - lastScroll) > 180) {
-      triggerGlitch(0.75);
-      lastScroll = window.scrollY;
-    }
-
-    const pct = Math.min(100, Math.round((scrollRatio / 0.36) * 100));
+    const pct = Math.round(mosaicProgress().raw * 100);
     if (pct >= 100 && !faceWasLocked) {
       faceWasLocked = true;
       triggerGlitch(1.25);
     } else if (pct < 85) {
       faceWasLocked = false;
+    }
+
+    if (Math.abs(window.scrollY - lastScroll) > 320) {
+      triggerGlitch(0.45);
+      lastScroll = window.scrollY;
     }
 
     mosaicReadout.textContent = pct === 0
@@ -2190,20 +2309,19 @@
 
   let t = 0;
   function renderMosaic() {
-    if (!document.hidden && scrollRatio < 0.72) {
+    if (!document.hidden && mosaicProgress().fadeOut > 0.01) {
       t += 0.015;
       ctx.clearRect(0, 0, W, H);
 
       smoothMx += (mx - smoothMx) * 0.08;
       smoothMy += (my - smoothMy) * 0.08;
 
-      const raw = Math.min(1, scrollRatio / 0.36);
+      const { raw, fadeOut } = mosaicProgress();
       const assemble = 1 - Math.pow(1 - raw, 3);
-      const fadeOut = scrollRatio > 0.45 ? Math.max(0, 1 - (scrollRatio - 0.45) / 0.22) : 1;
 
       if (fadeOut > 0.01) {
         const baseCenterX = W > 860 ? W * 0.66 : W * 0.5;
-        const baseCenterY = H * 0.5;
+        const baseCenterY = H * (W > 860 ? 0.5 : 0.28);
         const cellUnit = Math.min(W, H) * 0.0112;
 
         const normX = (smoothMx / W - 0.5) * 2;
