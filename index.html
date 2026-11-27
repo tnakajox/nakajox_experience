@@ -61,9 +61,6 @@
     cursor: none;
   }
 
-  /* =========================================
-     静寂の背景レイヤー（極薄の麻の葉文様＋微細粒子）
-     ========================================= */
   .asanoha-bg {
     position: fixed;
     inset: 0;
@@ -204,9 +201,6 @@
     outline: none;
   }
 
-  /* =========================================
-     STAGE 01: 静寂のヒーロー
-     ========================================= */
   .hero-void {
     position: relative;
     z-index: 10;
@@ -369,9 +363,6 @@
     color: var(--muted);
   }
 
-  /* =========================================
-     STAGE 02: スクロールで顔が形成され、滞在する空間
-     ========================================= */
   .mosaic-zone {
     position: relative;
     z-index: 10;
@@ -431,9 +422,6 @@
     color: var(--muted);
   }
 
-  /* =========================================
-     STAGE 03: 主役作品フィーチャー『64 FRAGMENTS』
-     ========================================= */
   .featured-section {
     position: relative;
     z-index: 10;
@@ -555,9 +543,6 @@
     gap: 14px;
   }
 
-  /* =========================================
-     STAGE 04: 二領域・九つの実験標本アーカイブ
-     ========================================= */
   .archive-section {
     position: relative;
     z-index: 10;
@@ -927,9 +912,6 @@
     outline: none;
   }
 
-  /* =========================================
-     STAGE 05: CONTEMPORARY JAPANESE COLOPHON (四、奥付)
-     ========================================= */
   .colophon-section {
     position: relative;
     z-index: 10;
@@ -1186,7 +1168,6 @@
 </head>
 <body>
 
-<!-- 石印の削れ・かすれ表現用SVGフィルター（非表示定義） -->
 <svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
   <defs>
     <filter id="seal-erosion" x="-15%" y="-15%" width="130%" height="130%">
@@ -1391,7 +1372,6 @@
           <div class="colophon-name">TOMOHIRO<br>NAKAJO</div>
           <div class="colophon-jp-row">
             <span class="colophon-jp-name">中城 朋洋</span>
-            <!-- 削れ感のある作家朱印「中」 -->
             <svg class="hanko-eroded-svg" viewBox="0 0 36 36" aria-label="作家印 中">
               <rect x="2.5" y="2.5" width="31" height="31" fill="none" stroke="#963e33" stroke-width="2.6" />
               <line x1="2.5" y1="11" x2="5" y2="11" stroke="#050505" stroke-width="2.5" />
@@ -1423,7 +1403,6 @@
 
         <div class="colophon-aside">
           <span class="rakkan-note">Why so serious?</span>
-          <!-- 削れ感のあるスタジオ朱印「印」 -->
           <svg class="hanko-eroded-svg" viewBox="0 0 36 36" aria-label="スタジオ印 印" style="transform: rotate(1.8deg);">
             <rect x="2.5" y="2.5" width="31" height="31" fill="none" stroke="#963e33" stroke-width="2.6" />
             <line x1="14" y1="2.5" x2="17" y2="2.5" stroke="#050505" stroke-width="2.6" />
@@ -2221,8 +2200,8 @@
   buildArchiveDeck("ALL");
 
   // =========================================================
-  // 6. ご本人の白黒ポートレートによるデジタルモザイク結像
-  //    （目元ピクセルがカーソルを追尾）
+  // 6. 白黒ポートレートによるデジタルモザイク結像
+  //    （静止肖像 ＋ カーソル接近で粒子分散）
   // =========================================================
   const canvas = document.getElementById("mosaic-canvas");
   const ctx = canvas.getContext("2d");
@@ -2238,7 +2217,6 @@
   const fCtx = faceBuffer.getContext("2d");
 
   let mosaicTiles = [];
-  let isPhotoPortrait = false;
 
   function buildFallbackTiles() {
     fCtx.fillStyle = "#000000";
@@ -2323,7 +2301,6 @@
 
     if (tiles.length > 100) {
       mosaicTiles = tiles;
-      isPhotoPortrait = true;
     }
   }
 
@@ -2369,8 +2346,6 @@
 
   let t = 0;
   function renderMosaic() {
-   let t = 0;
-  function renderMosaic() {
     if (!document.hidden && mosaicProgress().fadeOut > 0.01) {
       t += 0.015;
       ctx.clearRect(0, 0, W, H);
@@ -2386,7 +2361,6 @@
         const targetCenterY = H * (W > 860 ? 0.5 : 0.28);
         const cellUnit = Math.min(W, H) * 0.0068;
 
-        // 外枠フレーム（静止）
         if (assemble > 0.2) {
           const frameW = fbW * cellUnit * 0.96;
           const frameH = fbH * cellUnit * 0.98;
@@ -2402,19 +2376,15 @@
 
         const glitchRow = glitchIntensity > 0.08 ? Math.floor((Math.random() - 0.5) * fbH) : 999;
         const glitchShiftX = glitchIntensity > 0.08 ? (Math.random() - 0.5) * 44 * glitchIntensity : 0;
-
-        // マウスカーソルによる粒子分散の半径と強さ
         const repelRadius = Math.max(75, Math.min(W, H) * 0.11);
 
         for (let i = 0; i < mosaicTiles.length; i++) {
           const tile = mosaicTiles[i];
           const rowOffset = Math.abs(tile.gy - glitchRow) < 2.8 ? glitchShiftX : 0;
 
-          // 静止した本来の結像座標
           const baseTx = targetCenterX + tile.gx * cellUnit + rowOffset;
           const baseTy = targetCenterY + tile.gy * cellUnit;
 
-          // カーソルが近づいた粒子を放射状に散らす計算
           let repelX = 0;
           let repelY = 0;
           let repelScale = 1.0;
