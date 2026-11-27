@@ -1456,8 +1456,8 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  // =========================================================
-  // 1. 静寂と破綻のグリッチ・システム
+ // =========================================================
+  // 1. 静寂と破綻のグリッチ・システム（確実に発火・描画される修正版）
   // =========================================================
   const glitchCanvas = document.getElementById("glitch-canvas");
   const gCtx = glitchCanvas.getContext("2d");
@@ -1469,12 +1469,11 @@
   let glitchRafId = null;
 
   function triggerGlitch(power = 1.1) {
-    if (reduceMotion.matches) return;
-    glitchIntensity = Math.min(2.0, glitchIntensity + power);
+    glitchIntensity = Math.min(2.2, glitchIntensity + power);
     document.body.classList.add("glitch-spike");
     setTimeout(() => {
       document.body.classList.remove("glitch-spike");
-    }, 130);
+    }, 180);
 
     if (!glitchRafId) {
       glitchCanvas.style.display = "block";
@@ -1483,31 +1482,29 @@
   }
 
   function renderGlitchBurst() {
-    gCtx.globalCompositeOperation = "source-over";
-    gCtx.fillStyle = "rgba(0, 0, 0, 0.16)";
-    gCtx.fillRect(0, 0, gW, gH);
+    gCtx.clearRect(0, 0, gW, gH);
 
-    if (glitchIntensity > 0.03) {
-      const sliceCount = Math.floor(8 + glitchIntensity * 18);
+    if (glitchIntensity > 0.04) {
+      const sliceCount = Math.floor(12 + glitchIntensity * 22);
       for (let i = 0; i < sliceCount; i++) {
         const sy = Math.random() * gH;
-        const sh = 2 + Math.random() * (28 * glitchIntensity);
-        const sx = Math.random() * gW * 0.55;
-        const sw = 100 + Math.random() * (gW * 0.72);
-        const shift = (Math.random() - 0.5) * 75 * glitchIntensity;
+        const sh = 2 + Math.random() * (32 * glitchIntensity);
+        const sx = Math.random() * gW * 0.5;
+        const sw = 120 + Math.random() * (gW * 0.78);
+        const shift = (Math.random() - 0.5) * 90 * glitchIntensity;
 
-        gCtx.fillStyle = `rgba(255, 36, 36, ${Math.min(0.42, 0.22 * glitchIntensity)})`;
+        gCtx.fillStyle = `rgba(255, 36, 36, ${Math.min(0.55, 0.28 * glitchIntensity)})`;
         gCtx.fillRect(sx + shift, sy, sw, sh);
 
-        gCtx.fillStyle = `rgba(36, 240, 255, ${Math.min(0.42, 0.22 * glitchIntensity)})`;
+        gCtx.fillStyle = `rgba(36, 240, 255, ${Math.min(0.55, 0.28 * glitchIntensity)})`;
         gCtx.fillRect(sx - shift, sy + 1, sw, sh);
 
-        if (Math.random() < 0.48) {
-          gCtx.fillStyle = `rgba(235, 232, 224, ${Math.min(0.48, 0.25 * glitchIntensity)})`;
+        if (Math.random() < 0.55) {
+          gCtx.fillStyle = `rgba(235, 232, 224, ${Math.min(0.65, 0.35 * glitchIntensity)})`;
           gCtx.fillRect(0, sy, gW, 1.5);
         }
       }
-      glitchIntensity *= 0.89;
+      glitchIntensity *= 0.92;
       glitchRafId = requestAnimationFrame(renderGlitchBurst);
     } else {
       gCtx.clearRect(0, 0, gW, gH);
