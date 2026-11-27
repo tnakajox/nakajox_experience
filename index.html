@@ -49,15 +49,12 @@
     color: var(--fg);
     font-family: var(--mincho);
     scroll-behavior: smooth;
-    font-kerning: normal;
-    text-rendering: optimizeLegibility;
   }
 
   body {
     background: var(--bg);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    font-feature-settings: "palt" 1;
   }
 
   body.brush-active, body.brush-active a, body.brush-active button, body.brush-active input {
@@ -140,17 +137,17 @@
     writing-mode: vertical-rl;
     font-family: var(--mincho);
     font-size: 11px;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.46em;
     color: rgba(226, 223, 215, 0.35);
     pointer-events: none;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
   }
   .vertical-rail::before {
     content: "";
     width: 1px;
-    height: 44px;
+    height: 48px;
     background: var(--wabi-rust);
   }
 
@@ -161,22 +158,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5vw;
+    padding: 16px 5vw;
     border-bottom: 1px solid var(--line);
     background: rgba(5, 5, 5, 0.94);
     font-family: var(--mincho);
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.22em;
   }
 
   .brand-lockup {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 11px;
     color: var(--fg);
     text-decoration: none;
     font-weight: 500;
-    letter-spacing: 0.06em;
   }
 
   .hanko-mini {
@@ -189,17 +185,15 @@
     color: var(--wabi-rust);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0;
   }
 
   .nav-group {
     display: flex;
-    gap: 20px;
+    gap: 24px;
   }
   .nav-group a {
     color: var(--muted);
     text-decoration: none;
-    letter-spacing: 0.08em;
     transition: color 0.25s;
   }
   .nav-group a:hover, .nav-group a:focus-visible {
@@ -222,7 +216,7 @@
   .hero-meta-top {
     font-family: var(--mincho);
     font-size: 11px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.3em;
     color: var(--muted);
     display: flex;
     justify-content: space-between;
@@ -239,7 +233,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .hanko-seal {
@@ -249,25 +243,25 @@
     font-family: var(--mincho);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     padding: 2px 7px;
   }
 
   .hero-title {
     font-family: var(--mincho);
     font-size: clamp(28px, 3.8vw, 46px);
-    font-weight: 500;
-    line-height: 1.24;
-    letter-spacing: 0.04em;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
     color: var(--fg);
-    margin-bottom: 34px;
+    margin-bottom: 38px;
   }
 
   .hero-subtitle-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    margin-top: 12px;
+    gap: 6px;
+    margin-top: 14px;
   }
 
   .en-title-sub {
@@ -275,14 +269,14 @@
     font-family: var(--mincho);
     font-size: clamp(14px, 1.5vw, 18px);
     font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.18em;
     color: var(--paper);
   }
 
   .jp-title-sub {
     display: block;
     font-size: clamp(13px, 1.25vw, 15px);
-    letter-spacing: 0.16em;
+    letter-spacing: 0.38em;
     color: var(--muted);
   }
 
@@ -290,7 +284,7 @@
     width: 48px;
     height: 1px;
     background: var(--wabi-rust);
-    margin-bottom: 24px;
+    margin-bottom: 26px;
   }
 
   .lead-box {
@@ -300,7 +294,7 @@
   .lead-tag {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     color: var(--muted);
     margin-bottom: 10px;
   }
@@ -309,8 +303,8 @@
     font-family: var(--typewriter);
     font-size: clamp(17px, 2.2vw, 25px);
     font-weight: 400;
-    line-height: 1.38;
-    letter-spacing: -0.01em;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
     color: var(--fg);
     min-height: 1.4em;
   }
@@ -334,7 +328,7 @@
     opacity: 0;
     transition: opacity 1.1s ease;
     display: grid;
-    gap: 7px;
+    gap: 8px;
   }
   .bilingual-statement.show {
     opacity: 1;
@@ -344,8 +338,8 @@
     font-family: var(--mincho);
     font-size: clamp(13px, 1.25vw, 15px);
     color: #c6c3bb;
-    letter-spacing: 0.08em;
-    line-height: 1.85;
+    letter-spacing: 0.22em;
+    line-height: 1.9;
   }
 
   .chomsky-en {
@@ -353,8 +347,8 @@
     font-size: 12px;
     font-weight: 400;
     color: var(--muted);
-    letter-spacing: 0.02em;
-    line-height: 1.7;
+    letter-spacing: 0.04em;
+    line-height: 1.75;
   }
 
   .hero-meta-bottom {
@@ -365,7 +359,7 @@
     border-top: 1px solid var(--line);
     font-family: var(--mincho);
     font-size: 11px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.26em;
     color: var(--muted);
   }
 
@@ -394,7 +388,7 @@
   .raw-caption .cap-id {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     color: var(--muted);
     margin-bottom: 10px;
   }
@@ -403,8 +397,8 @@
     font-family: var(--mincho);
     font-size: 23px;
     font-weight: 500;
-    letter-spacing: 0.06em;
-    line-height: 1.5;
+    letter-spacing: 0.14em;
+    line-height: 1.55;
     margin-bottom: 14px;
     color: var(--fg);
   }
@@ -412,8 +406,8 @@
   .raw-caption p {
     font-family: var(--mincho);
     font-size: 13px;
-    line-height: 1.98;
-    letter-spacing: 0.03em;
+    line-height: 2.05;
+    letter-spacing: 0.07em;
     color: #c2bfb7;
   }
 
@@ -423,8 +417,8 @@
     border-top: 1px solid var(--line);
     font-family: var(--sans);
     font-size: 11.5px;
-    line-height: 1.65;
-    letter-spacing: 0.015em;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
     color: var(--muted);
   }
 
@@ -459,7 +453,7 @@
     justify-content: space-between;
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     color: var(--muted);
     padding-bottom: 10px;
     border-bottom: 1px solid var(--line);
@@ -478,7 +472,7 @@
     justify-content: space-between;
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     color: var(--muted);
     padding-top: 10px;
     margin-top: 12px;
@@ -497,7 +491,7 @@
     gap: 10px;
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     color: var(--fg);
   }
 
@@ -507,21 +501,20 @@
     font-family: var(--mincho);
     padding: 2px 7px;
     font-weight: 700;
-    letter-spacing: 0.06em;
   }
 
   .featured-title {
     font-family: var(--display);
     font-size: clamp(42px, 5.5vw, 72px);
     line-height: 0.94;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.02em;
     color: var(--fg);
   }
 
   .featured-question {
     font-family: var(--mincho);
-    font-size: 15.5px;
-    letter-spacing: 0.05em;
+    font-size: 16px;
+    letter-spacing: 0.14em;
     color: var(--paper);
     border-left: 2px solid var(--wabi-rust);
     padding-left: 14px;
@@ -531,16 +524,15 @@
   .featured-desc-jp {
     font-family: var(--mincho);
     font-size: 13.5px;
-    line-height: 2.0;
-    letter-spacing: 0.025em;
+    line-height: 2.05;
+    letter-spacing: 0.06em;
     color: #c2bfb7;
   }
 
   .featured-desc-en {
     font-family: var(--sans);
     font-size: 12.5px;
-    line-height: 1.75;
-    letter-spacing: 0.01em;
+    line-height: 1.8;
     color: var(--muted);
   }
 
@@ -587,7 +579,7 @@
   .zine-kicker-bar {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     color: var(--muted);
   }
 
@@ -595,7 +587,7 @@
     font-family: var(--mincho);
     font-size: clamp(24px, 3.2vw, 38px);
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.22em;
     line-height: 1.2;
   }
 
@@ -607,7 +599,7 @@
   .zine-issue {
     display: block;
     font-size: 11px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.22em;
     color: var(--muted);
     margin-bottom: 8px;
   }
@@ -615,7 +607,7 @@
   .zine-counter {
     display: inline-block;
     font-size: 12px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.22em;
     color: var(--fg);
     border: 1px solid var(--wabi-rust);
     padding: 4px 12px;
@@ -636,7 +628,7 @@
     color: var(--muted);
     font-family: var(--mincho);
     font-size: 12px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.16em;
     padding: 8px 16px;
     display: inline-flex;
     align-items: center;
@@ -647,7 +639,7 @@
   .cat-tab span.en-sub {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
     opacity: 0.8;
   }
 
@@ -762,7 +754,7 @@
     font-family: var(--mono);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
     padding: 2px 7px;
     border: 1px solid var(--ink);
   }
@@ -780,7 +772,7 @@
     font-family: var(--mincho);
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.1em;
     color: #3d3b35;
     border-bottom: 1px solid rgba(17, 17, 16, 0.25);
     padding-bottom: 5px;
@@ -790,7 +782,7 @@
     margin-top: 8px;
     font-family: var(--display);
     font-size: 26px;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.02em;
     line-height: 1.04;
     color: var(--ink);
     text-transform: uppercase;
@@ -813,7 +805,7 @@
     font-family: var(--mincho);
     font-size: 11px;
     padding: 8px 16px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.18em;
     transition: background 0.2s, color 0.2s;
   }
   .cf-btn:hover, .cf-btn:focus-visible {
@@ -862,14 +854,14 @@
     font-size: 38px;
     font-weight: 500;
     line-height: 1;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.1em;
     color: var(--paper);
   }
   .ed-meta .ed-cat {
     margin-top: 10px;
     font-family: var(--mincho);
     font-size: 11px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
     color: var(--muted);
     line-height: 1.65;
   }
@@ -877,7 +869,7 @@
   .ed-body .ed-title {
     font-family: var(--display);
     font-size: 30px;
-    letter-spacing: -0.005em;
+    letter-spacing: 0.03em;
     color: var(--fg);
   }
 
@@ -885,8 +877,8 @@
     margin-top: 10px;
     font-family: var(--mincho);
     font-size: 13.5px;
-    line-height: 1.92;
-    letter-spacing: 0.02em;
+    line-height: 1.95;
+    letter-spacing: 0.05em;
     color: #d2cfc7;
   }
 
@@ -894,8 +886,7 @@
     margin-top: 8px;
     font-family: var(--sans);
     font-size: 12px;
-    line-height: 1.68;
-    letter-spacing: 0.01em;
+    line-height: 1.7;
     color: var(--muted);
   }
 
@@ -903,12 +894,12 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 13px 24px;
+    padding: 14px 26px;
     background: transparent;
     color: var(--paper);
     font-family: var(--mincho);
     font-size: 12px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
     text-decoration: none;
     white-space: nowrap;
     border: 1px solid var(--paper);
@@ -948,7 +939,7 @@
   .colophon-kicker {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.2em;
     color: var(--muted);
     display: block;
     margin-bottom: 6px;
@@ -958,14 +949,14 @@
     font-family: var(--mincho);
     font-size: clamp(22px, 2.8vw, 32px);
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.24em;
     color: var(--fg);
   }
 
   .colophon-loc {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.22em;
     color: var(--muted);
   }
 
@@ -981,7 +972,7 @@
   .colophon-label {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.2em;
     color: var(--muted);
     margin-bottom: 20px;
   }
@@ -990,8 +981,8 @@
     font-family: var(--mincho);
     font-size: clamp(32px, 3.8vw, 50px);
     font-weight: 500;
-    line-height: 1.18;
-    letter-spacing: 0.03em;
+    line-height: 1.24;
+    letter-spacing: 0.14em;
     color: var(--fg);
     margin-bottom: 24px;
   }
@@ -999,7 +990,7 @@
   .colophon-jp-row {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     margin-bottom: 12px;
   }
 
@@ -1007,7 +998,7 @@
     font-family: var(--mincho);
     font-size: 20px;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.34em;
     color: var(--paper);
   }
 
@@ -1024,7 +1015,7 @@
   .colophon-role {
     font-family: var(--mono);
     font-size: 12px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.22em;
     color: var(--muted);
   }
 
@@ -1038,7 +1029,7 @@
     border-bottom: 1px solid var(--line);
     font-family: var(--mono);
     font-size: 13px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.14em;
     color: var(--fg);
     display: flex;
     justify-content: space-between;
@@ -1048,7 +1039,7 @@
   .practice-list li span.jp-tag {
     font-family: var(--mincho);
     font-size: 11px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.2em;
     color: var(--muted);
   }
 
@@ -1058,7 +1049,7 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 20px;
   }
 
   .studio-block {
@@ -1067,72 +1058,32 @@
     gap: 6px;
   }
 
-  .studio-link {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 8px;
+  .studio-name {
     font-family: var(--mincho);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.14em;
     color: var(--fg);
-    text-decoration: none;
-    border-bottom: 1px solid var(--line-strong);
-    padding-bottom: 2px;
-    width: fit-content;
-    transition: color 0.25s, border-color 0.25s;
-  }
-  .studio-link:hover, .studio-link:focus-visible {
-    color: var(--wabi-rust);
-    border-color: var(--wabi-rust);
-    outline: none;
-  }
-  .studio-link .arrow {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--wabi-rust);
   }
 
   .studio-sub {
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
     color: var(--muted);
   }
 
   .colophon-aside {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     gap: 22px;
-  }
-
-  .contact-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 22px;
-    background: transparent;
-    border: 1px solid var(--paper);
-    color: var(--paper);
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-decoration: none;
-    transition: background 0.25s, border-color 0.25s, color 0.25s;
-  }
-  .contact-cta:hover, .contact-cta:focus-visible {
-    background: var(--wabi-rust);
-    border-color: var(--wabi-rust);
-    color: var(--fg);
-    outline: none;
   }
 
   .rakkan-note {
     font-family: var(--mono);
     font-size: 12px;
     font-style: italic;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
     color: var(--muted);
   }
 
@@ -1180,3 +1131,1308 @@
     .cf-track {
       width: auto;
       height: auto;
+      display: flex;
+      gap: 18px;
+      padding: 0 7vw;
+    }
+    .mag-polaroid {
+      position: relative;
+      flex: 0 0 272px;
+      width: 272px;
+      transform: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      scroll-snap-align: center;
+    }
+    .cf-controls { display: none; }
+  }
+
+  footer {
+    position: relative;
+    z-index: 10;
+    padding: 28px 5vw;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    font-family: var(--mincho);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    background: #050505;
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
+  <defs>
+    <filter id="seal-erosion" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.16" numOctaves="3" seed="14" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.8" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="7" result="grain" />
+      <feColorMatrix in="grain" type="matrix" values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 -1.9 1.45" result="mask" />
+      <feComposite in="displaced" in2="mask" operator="in" />
+    </filter>
+  </defs>
+</svg>
+
+<div class="asanoha-bg"></div>
+<canvas id="mosaic-canvas"></canvas>
+<div class="grit-overlay"></div>
+<div class="vignette"></div>
+<canvas id="glitch-canvas"></canvas>
+<canvas id="brush-canvas"></canvas>
+
+<div class="vertical-rail" aria-hidden="true">
+  そうなろうとする万有意志 ／／ 弐〇弐六
+</div>
+
+<header>
+  <a href="#top" class="brand-lockup">
+    <span class="hanko-mini">中</span>
+    <span>Nakajox Experience</span>
+  </a>
+  <div id="mosaic-readout" style="color:var(--muted);font-family:var(--mono);font-size:11px;">SILENCE // 0%</div>
+  <nav class="nav-group" aria-label="主要ナビゲーション">
+    <a href="#mosaic">一、輪郭</a>
+    <a href="#featured">二、主標本</a>
+    <a href="#archive">三、標本目録</a>
+    <a href="#colophon">四、奥付</a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- STAGE 01: 静寂のヒーロー -->
+  <section class="hero-void">
+    <div class="hero-meta-top">
+      <span>横浜 ／／ 観測と実験の記録</span>
+      <span>MONOGRAPH // 09 WORKS</span>
+    </div>
+
+    <div class="hero-center-block">
+      <div class="hero-jp-line">
+        <span class="hanko-seal">実験記録</span>
+      </div>
+
+      <h1 class="hero-title">
+        Nakajox Experience
+        <span class="hero-subtitle-group">
+          <span class="en-title-sub">Universal Will to Become</span>
+          <span class="jp-title-sub">そうなろうとする万有意志</span>
+        </span>
+      </h1>
+
+      <div class="wabi-rule"></div>
+
+      <div class="lead-box">
+        <div class="lead-tag">PREMISE // NOAM CHOMSKY — SYNTACTIC STRUCTURES (1957)</div>
+        <div class="chomsky-lead">
+          <span id="typed-text"></span><span class="cursor-block"></span>
+        </div>
+        <div class="bilingual-statement" id="chomsky-sub">
+          <p class="chomsky-jp">
+            無色の緑色の考えが猛烈に眠る。とか言うたりして
+          </p>
+          <p class="chomsky-en">
+            Grammatically valid yet semantically void — or something like that. Interactive experiments on body, perception, and system architecture.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-meta-bottom">
+      <span>下にスクロールして輪郭を結ぶ</span>
+      <span>SCROLL TO RECONSTRUCT</span>
+    </div>
+  </section>
+
+  <!-- STAGE 02: スクロールで顔が形成される瞬間 -->
+  <section class="mosaic-zone" id="mosaic">
+    <div class="raw-caption">
+      <div class="cap-id">1. PERCEPTION // 断片と結像</div>
+      <h2>断片は、<br>いつ顔になるのか。</h2>
+      <p>
+        意味を持たない無数の断片が、ひとつの顔を結ぶ。見ることと、見られること。その境界を探る。
+      </p>
+      <p class="en-note">
+        When do fragments become a face? Countless meaningless fragments converge into a single portrait—exploring the threshold between seeing and being seen.
+      </p>
+    </div>
+  </section>
+
+  <!-- STAGE 03: 主役作品フィーチャー『64 FRAGMENTS』 -->
+  <section class="featured-section" id="featured">
+    <div class="featured-wrap">
+      <div class="matrix-stage-box">
+        <div class="matrix-top-bar">
+          <span>KEYNOTE SPECIMEN // 静止 ↔ 運動</span>
+          <span>8×8 SPATIOTEMPORAL DELAY</span>
+        </div>
+        <canvas id="hero-work-canvas" aria-label="64 FRAGMENTS インタラクティブプレビュー"></canvas>
+        <div class="matrix-foot-bar">
+          <span>SIMULATION (NO CAMERA) // MOVE CURSOR</span>
+          <span>64 CELLS / ASYNC PHASE</span>
+        </div>
+      </div>
+
+      <div class="featured-info">
+        <div class="featured-badge">
+          <span class="seal">主標本</span>
+          <span>FEATURED EXPERIMENT // BODY &amp; PERCEPTION</span>
+        </div>
+        <h2 class="featured-title">64 FRAGMENTS</h2>
+        <p class="featured-question">
+          「過去の自分は、今の自分と同じ人間なのか？」<br>
+          Is my past self still the same person as I am now?
+        </p>
+        <p class="featured-desc-jp">
+          カメラ映像を8×8＝64の非均一グリッドへ分割し、それぞれの断片に異なる時間遅延（タイムラグ）を割り当てる。立ち止まれば1枚の肖像へ戻り、動けば過去と現在がズレて自己の輪郭がほどけていく時空間マトリクス実験。
+        </p>
+        <p class="featured-desc-en">
+          Dividing live presence into an 8×8 grid with staggered temporal delays. Stillness restores a unified portrait; motion fractures the self across past and present moments.
+        </p>
+        <div class="featured-actions">
+          <a href="https://tnakajox.github.io/64FRAGMENTS/" target="_blank" rel="noopener" class="launch-btn">作品を体験する (LAUNCH) ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 04: 二領域・九つの実験標本アーカイブ -->
+  <section class="archive-section" id="archive">
+    <div class="zine-header">
+      <div class="zine-header-left">
+        <span class="zine-kicker-bar">COMPLETE ARCHIVE // 09 EXPERIMENTS IN 02 DOMAINS</span>
+        <h2>二領域・九つの実験標本</h2>
+      </div>
+      <div class="zine-right-meta">
+        <span class="zine-issue">標本目録</span>
+        <span class="zine-counter" id="cf-counter">標本 01 / 09</span>
+      </div>
+    </div>
+
+    <div class="cat-filter-bar" role="tablist" aria-label="実験領域カテゴリ">
+      <button type="button" class="cat-tab active" data-cat="ALL" role="tab" aria-selected="true">
+        全標本 [09] <span class="en-sub">ALL</span>
+      </button>
+      <button type="button" class="cat-tab" data-cat="BODY" role="tab" aria-selected="false">
+        壱・身体と知覚 [05] <span class="en-sub">BODY &amp; PERCEPTION</span>
+      </button>
+      <button type="button" class="cat-tab" data-cat="SYSTEM" role="tab" aria-selected="false">
+        弐・計算と構造 [04] <span class="en-sub">SYSTEM &amp; STRUCTURE</span>
+      </button>
+    </div>
+
+    <div class="cf-stage" id="cf-stage" role="region" aria-label="実験標本アーカイブ">
+      <div class="cf-track" id="cf-track"></div>
+    </div>
+
+    <div class="cf-controls">
+      <button type="button" class="cf-btn" id="btn-prev" aria-label="前の作品">← 前頁</button>
+      <input type="range" min="0" max="8" value="0" class="cf-slider" id="cf-slider" aria-label="作品スライダー">
+      <button type="button" class="cf-btn" id="btn-next" aria-label="次の作品">次頁 →</button>
+    </div>
+
+    <div class="editorial-sheet">
+      <div class="ed-meta">
+        <div class="ed-num" id="ins-num">壱</div>
+        <div class="ed-cat" id="ins-kicker">壱・身体と知覚<br>BODY &amp; PERCEPTION<br>静止 ↔ 運動</div>
+      </div>
+      <div class="ed-body">
+        <div class="ed-title" id="ins-title">64 FRAGMENTS</div>
+        <p class="ed-desc" id="ins-desc">過去の自分は今の自分と同じ人間なのか？8×8の断片に異なる時間遅延を与え、動きによって自己の輪郭がほどける時空間実験。</p>
+        <p class="ed-desc-en" id="ins-desc-en">Is my past self still the same person as I am now? An 8x8 matrix with staggered temporal delays that fractures the self through motion.</p>
+      </div>
+      <a href="#" target="_blank" rel="noopener" class="launch-btn" id="ins-link">標本を開く ↗</a>
+    </div>
+  </section>
+
+  <!-- STAGE 05: CONTEMPORARY JAPANESE COLOPHON (四、奥付) -->
+  <section class="colophon-section" id="colophon">
+    <div class="colophon-container">
+      <div class="colophon-top">
+        <div>
+          <span class="colophon-kicker">CONTEMPORARY JAPANESE COLOPHON // 004</span>
+          <h2 class="colophon-heading">四、奥付 — 作家とスタジオ</h2>
+        </div>
+        <div class="colophon-loc">YOKOHAMA / JAPAN — 2026</div>
+      </div>
+
+      <div class="colophon-grid">
+        <div>
+          <div class="colophon-label">01 / IDENTITY</div>
+          <div class="colophon-name">TOMOHIRO<br>NAKAJO</div>
+          <div class="colophon-jp-row">
+            <span class="colophon-jp-name">中城 朋洋</span>
+            <svg class="hanko-eroded-svg" viewBox="0 0 36 36" aria-label="作家印 中">
+              <rect x="2.5" y="2.5" width="31" height="31" fill="none" stroke="#963e33" stroke-width="2.6" />
+              <line x1="2.5" y1="11" x2="5" y2="11" stroke="#050505" stroke-width="2.5" />
+              <line x1="33.5" y1="24" x2="31" y2="24" stroke="#050505" stroke-width="2.5" />
+              <text x="18" y="25" text-anchor="middle" fill="#963e33" font-family="'Shippori Mincho', serif" font-weight="700" font-size="20">中</text>
+            </svg>
+          </div>
+          <div class="colophon-role">CREATOR / ARTIST</div>
+        </div>
+
+        <div>
+          <div class="colophon-label">02 / CREATIVE PRACTICE</div>
+          <ul class="practice-list">
+            <li><span>WEB / DIGITAL EXPRESSION</span><span class="jp-tag">空間構造</span></li>
+            <li><span>ART / VISUAL EXPERIMENT</span><span class="jp-tag">知覚実験</span></li>
+            <li><span>VIDEO / MOTION</span><span class="jp-tag">時間と運動</span></li>
+            <li><span>DESIGN / ART DIRECTION</span><span class="jp-tag">造形設計</span></li>
+            <li><span>POP ART / CONTEMPORARY CULTURE</span><span class="jp-tag">大衆文化</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="colophon-studio-bar">
+        <div class="studio-block">
+          <div class="colophon-label" style="margin-bottom:2px;">03 / STUDIO</div>
+          <div class="studio-name">electriclady inc.</div>
+          <div class="studio-sub">INDEPENDENT CREATIVE STUDIO — YOKOHAMA, JAPAN</div>
+        </div>
+
+        <div class="colophon-aside">
+          <span class="rakkan-note">Why so serious?</span>
+          <svg class="hanko-eroded-svg" viewBox="0 0 36 36" aria-label="スタジオ印 印" style="transform: rotate(1.8deg);">
+            <rect x="2.5" y="2.5" width="31" height="31" fill="none" stroke="#963e33" stroke-width="2.6" />
+            <line x1="14" y1="2.5" x2="17" y2="2.5" stroke="#050505" stroke-width="2.6" />
+            <line x1="2.5" y1="27" x2="5" y2="27" stroke="#050505" stroke-width="2.6" />
+            <text x="18" y="25" text-anchor="middle" fill="#963e33" font-family="'Shippori Mincho', serif" font-weight="700" font-size="19">印</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Nakajox Experience — Universal Will to Become</span>
+  <span>© electriclady inc.</span>
+</footer>
+
+<script>
+(() => {
+  const PORTRAIT_SRC = "portrait.jpg";
+
+  function fitCanvasDPR(canvas, ctx, cssW, cssH) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(cssW * dpr);
+    canvas.height = Math.floor(cssH * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { w: cssW, h: cssH };
+  }
+
+  // =========================================================
+  // 1. 静寂と破綻のグリッチ・システム
+  // =========================================================
+  const glitchCanvas = document.getElementById("glitch-canvas");
+  const gCtx = glitchCanvas.getContext("2d");
+  let gW = window.innerWidth;
+  let gH = window.innerHeight;
+  fitCanvasDPR(glitchCanvas, gCtx, gW, gH);
+
+  let glitchIntensity = 0;
+  let glitchRafId = null;
+
+  function triggerGlitch(power = 1.0) {
+    glitchIntensity = Math.min(1.0, glitchIntensity + power);
+    document.body.classList.add("glitch-spike");
+    setTimeout(() => {
+      document.body.classList.remove("glitch-spike");
+    }, 130);
+
+    if (!glitchRafId) {
+      glitchCanvas.style.display = "block";
+      glitchRafId = requestAnimationFrame(renderGlitchBurst);
+    }
+  }
+
+  function renderGlitchBurst() {
+    gCtx.clearRect(0, 0, gW, gH);
+
+    if (glitchIntensity > 0.04) {
+      const sliceCount = Math.floor(8 + glitchIntensity * 14);
+      for (let i = 0; i < sliceCount; i++) {
+        const sy = Math.random() * gH;
+        const sh = 2 + Math.random() * (22 * glitchIntensity);
+        const sx = Math.random() * gW * 0.5;
+        const sw = 120 + Math.random() * (gW * 0.72);
+        const shift = (Math.random() - 0.5) * 68 * glitchIntensity;
+
+        gCtx.fillStyle = `rgba(255, 36, 36, ${Math.min(0.42, 0.24 * glitchIntensity)})`;
+        gCtx.fillRect(sx + shift, sy, sw, sh);
+
+        gCtx.fillStyle = `rgba(36, 240, 255, ${Math.min(0.42, 0.24 * glitchIntensity)})`;
+        gCtx.fillRect(sx - shift, sy + 1, sw, sh);
+
+        if (Math.random() < 0.45) {
+          gCtx.fillStyle = `rgba(235, 232, 224, ${Math.min(0.42, 0.28 * glitchIntensity)})`;
+          gCtx.fillRect(0, sy, gW, 1.5);
+        }
+      }
+      glitchIntensity *= 0.89;
+      glitchRafId = requestAnimationFrame(renderGlitchBurst);
+    } else {
+      gCtx.clearRect(0, 0, gW, gH);
+      glitchIntensity = 0;
+      glitchCanvas.style.display = "none";
+      glitchRafId = null;
+    }
+  }
+
+  // =========================================================
+  // 2. 日本の毛筆・墨カーソル
+  // =========================================================
+  const brushCanvas = document.getElementById("brush-canvas");
+  const bCtx = brushCanvas.getContext("2d");
+  let bW = window.innerWidth;
+  let bH = window.innerHeight;
+  fitCanvasDPR(brushCanvas, bCtx, bW, bH);
+
+  let mx = bW * 0.5;
+  let my = bH * 0.5;
+  let smoothMx = mx;
+  let smoothMy = my;
+  let lastMoveTime = 0;
+  let hasMoved = false;
+  let brushRafId = null;
+
+  const BRISTLES = [
+    { ox: 0,     oy: 0,     scale: 1.0 },
+    { ox: -0.34, oy: -0.26, scale: 0.48 },
+    { ox: 0.36,  oy: 0.24,  scale: 0.46 },
+    { ox: -0.60, oy: 0.20,  scale: 0.28 },
+    { ox: 0.58,  oy: -0.24, scale: 0.26 },
+    { ox: -0.82, oy: -0.16, scale: 0.18 },
+    { ox: 0.80,  oy: 0.18,  scale: 0.18 }
+  ];
+
+  const strokes = [];
+  let currentStroke = null;
+  const splatters = [];
+
+  function ensureBrushLoop() {
+    if (!brushRafId) {
+      brushRafId = requestAnimationFrame(renderCalligraphyBrush);
+    }
+  }
+
+  window.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch") return;
+    document.body.classList.add("brush-active");
+
+    const now = performance.now();
+    const dx = e.clientX - mx;
+    const dy = e.clientY - my;
+    const speed = Math.hypot(dx, dy);
+    const angle = Math.atan2(dy, dx);
+
+    mx = e.clientX;
+    my = e.clientY;
+    hasMoved = true;
+
+    if (!currentStroke || now - lastMoveTime > 150) {
+      currentStroke = { points: [] };
+      strokes.push(currentStroke);
+      splatters.push({ x: mx, y: my, r: 9.5, t: now, life: 1150 });
+    }
+
+    lastMoveTime = now;
+    const targetWidth = Math.max(2.2, Math.min(26.0, 26.5 - speed * 0.32));
+
+    currentStroke.points.push({ x: mx, y: my, w: targetWidth, speed, angle, t: now });
+    if (currentStroke.points.length > 85) currentStroke.points.shift();
+
+    if (speed > 24 && Math.random() < 0.58) {
+      splatters.push({
+        x: mx + (Math.random() - 0.5) * 32,
+        y: my + (Math.random() - 0.5) * 32,
+        r: 1.2 + Math.random() * 2.8,
+        t: now,
+        life: 880
+      });
+    }
+    ensureBrushLoop();
+  });
+
+  window.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "touch") return;
+    const now = performance.now();
+    splatters.push({ x: e.clientX, y: e.clientY, r: 14.0, t: now, life: 1200 });
+    for (let k = 0; k < 12; k++) {
+      const ang = (Math.PI * 2 * k) / 12 + (Math.random() - 0.5) * 0.45;
+      const dist = 10 + Math.random() * 38;
+      splatters.push({
+        x: e.clientX + Math.cos(ang) * dist,
+        y: e.clientY + Math.sin(ang) * dist,
+        r: 1.4 + Math.random() * 4.0,
+        t: now,
+        life: 960
+      });
+    }
+    ensureBrushLoop();
+  });
+
+  function renderCalligraphyBrush() {
+    bCtx.clearRect(0, 0, bW, bH);
+    const now = performance.now();
+    const strokeLife = 1150;
+
+    for (let s = strokes.length - 1; s >= 0; s--) {
+      const pts = strokes[s].points;
+      while (pts.length > 0 && now - pts[0].t > strokeLife) pts.shift();
+      if (pts.length < 2) {
+        if (pts.length === 0) strokes.splice(s, 1);
+        continue;
+      }
+
+      bCtx.lineCap = "round";
+      bCtx.lineJoin = "round";
+
+      for (let i = 1; i < pts.length; i++) {
+        const p0 = pts[i - 1];
+        const p1 = pts[i];
+        const ageRatio = Math.max(0, 1 - (now - p1.t) / strokeLife);
+        const tipFactor = Math.min(1, i / 3);
+        const taper = Math.pow(ageRatio, 1.15) * tipFactor;
+        const baseW = p1.w * taper;
+        if (baseW < 0.25) continue;
+
+        const perpX = -Math.sin(p1.angle);
+        const perpY = Math.cos(p1.angle);
+
+        for (let b = 0; b < BRISTLES.length; b++) {
+          const br = BRISTLES[b];
+          if (p1.speed > 20 && b > 2 && (i + b) % 2 === 0) continue;
+
+          const offsetMag = baseW * 0.44;
+          bCtx.beginPath();
+          bCtx.moveTo(p0.x + perpX * br.ox * offsetMag, p0.y + perpY * br.ox * offsetMag);
+          bCtx.lineTo(p1.x + perpX * br.ox * offsetMag, p1.y + perpY * br.ox * offsetMag);
+          bCtx.strokeStyle = `rgba(255, 255, 255, ${taper * (b === 0 ? 1.0 : 0.72)})`;
+          bCtx.lineWidth = Math.max(0.6, baseW * br.scale);
+          bCtx.stroke();
+        }
+      }
+    }
+
+    for (let i = splatters.length - 1; i >= 0; i--) {
+      const sp = splatters[i];
+      const lifeRatio = 1 - (now - sp.t) / sp.life;
+      if (lifeRatio <= 0) {
+        splatters.splice(i, 1);
+        continue;
+      }
+      bCtx.fillStyle = `rgba(255, 255, 255, ${Math.pow(lifeRatio, 1.25) * 0.95})`;
+      bCtx.beginPath();
+      bCtx.arc(sp.x, sp.y, sp.r * Math.pow(lifeRatio, 0.45), 0, Math.PI * 2);
+      bCtx.fill();
+    }
+
+    if (hasMoved) {
+      bCtx.fillStyle = "#ffffff";
+      bCtx.beginPath();
+      bCtx.arc(mx, my, 3.0, 0, Math.PI * 2);
+      bCtx.fill();
+    }
+
+    if (strokes.length > 0 || splatters.length > 0) {
+      brushRafId = requestAnimationFrame(renderCalligraphyBrush);
+    } else {
+      brushRafId = null;
+    }
+  }
+
+  // =========================================================
+  // 3. チョムスキーのタイプライター演出
+  // =========================================================
+  const sentence = "Colorless green ideas sleep furiously.";
+  const typedEl = document.getElementById("typed-text");
+  const subEl = document.getElementById("chomsky-sub");
+  const glitchChars = "#$%&@*!?/\\[]01";
+  let charIdx = 0;
+
+  function typeNextChar() {
+    if (charIdx < sentence.length) {
+      const targetChar = sentence.charAt(charIdx);
+      if (targetChar !== " " && Math.random() < 0.25) {
+        const fake = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        const current = typedEl.textContent;
+        typedEl.textContent = current + fake;
+        setTimeout(() => {
+          typedEl.textContent = current + targetChar;
+          charIdx++;
+          setTimeout(typeNextChar, 34 + Math.random() * 55);
+        }, 40);
+      } else {
+        typedEl.textContent += targetChar;
+        charIdx++;
+        setTimeout(typeNextChar, 38 + Math.random() * 60);
+      }
+    } else {
+      subEl.classList.add("show");
+      triggerGlitch(0.95);
+    }
+  }
+
+  setTimeout(typeNextChar, 300);
+
+  // =========================================================
+  // 4. 主役作品『64 FRAGMENTS』インタラクティブ8×8時空間ステージ
+  // =========================================================
+  const heroWorkCanvas = document.getElementById("hero-work-canvas");
+  const hwCtx = heroWorkCanvas.getContext("2d");
+  let hwSize = 420;
+  let hwVisible = false;
+  let hwTime = 0;
+  let hwPointer = { x: 0.5, y: 0.5, active: false };
+
+  function resizeHeroWork() {
+    const rect = heroWorkCanvas.getBoundingClientRect();
+    if (rect.width > 0) {
+      hwSize = rect.width;
+      fitCanvasDPR(heroWorkCanvas, hwCtx, hwSize, hwSize);
+    }
+  }
+  resizeHeroWork();
+
+  heroWorkCanvas.addEventListener("pointermove", (e) => {
+    const rect = heroWorkCanvas.getBoundingClientRect();
+    hwPointer.x = (e.clientX - rect.left) / rect.width;
+    hwPointer.y = (e.clientY - rect.top) / rect.height;
+    hwPointer.active = true;
+  });
+  heroWorkCanvas.addEventListener("pointerleave", () => {
+    hwPointer.active = false;
+  });
+
+  const cells64 = [];
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      cells64.push({
+        r,
+        c,
+        delay: (r * 0.35 + c * 0.45) + Math.sin(r * 1.7 + c) * 1.4,
+        baseTone: 0.25 + 0.65 * Math.exp(-Math.hypot(c - 3.5, r - 3.3) / 3.4)
+      });
+    }
+  }
+
+  function renderHeroWork64() {
+    if (!hwVisible || document.hidden) return;
+    hwTime += 0.025;
+    hwCtx.clearRect(0, 0, hwSize, hwSize);
+
+    const cellW = hwSize / 8;
+    const px = hwPointer.active ? hwPointer.x * 8 : 4 + Math.cos(hwTime * 0.7) * 2.2;
+    const py = hwPointer.active ? hwPointer.y * 8 : 4 + Math.sin(hwTime * 0.6) * 2.2;
+
+    for (let i = 0; i < 64; i++) {
+      const cell = cells64[i];
+      const dist = Math.hypot(cell.c + 0.5 - px, cell.r + 0.5 - py);
+      const wave = Math.sin(hwTime * 2.2 - cell.delay - dist * 0.65);
+      const temporalShift = Math.max(0, 1 - dist / 4.2);
+
+      const x = cell.c * cellW + 1.5;
+      const y = cell.r * cellW + 1.5;
+      const w = cellW - 3;
+
+      const luma = Math.min(1, Math.max(0.08, cell.baseTone * (0.55 + 0.45 * wave) + temporalShift * 0.35));
+      const g = Math.round(35 + luma * 195);
+
+      hwCtx.fillStyle = `rgb(${g}, ${g}, ${g - 4})`;
+      hwCtx.fillRect(x, y, w, w);
+
+      if (temporalShift > 0.35) {
+        hwCtx.strokeStyle = `rgba(150, 62, 51, ${temporalShift * 0.85})`;
+        hwCtx.lineWidth = 1.2;
+        hwCtx.strokeRect(x + 2, y + 2, w - 4, w - 4);
+      }
+
+      hwCtx.fillStyle = luma > 0.55 ? "rgba(10,10,10,0.65)" : "rgba(226,223,215,0.45)";
+      hwCtx.font = `${Math.max(11, Math.floor(cellW * 0.19))}px "JetBrains Mono", monospace`;
+      hwCtx.fillText(String(i + 1).padStart(2, "0"), x + 4, y + cellW * 0.3);
+    }
+
+    requestAnimationFrame(renderHeroWork64);
+  }
+
+  const featuredObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      hwVisible = entry.isIntersecting;
+      if (hwVisible) {
+        resizeHeroWork();
+        requestAnimationFrame(renderHeroWork64);
+      }
+    });
+  }, { threshold: 0.15 });
+  featuredObserver.observe(document.getElementById("featured"));
+
+  // =========================================================
+  // 5. 二領域（壱・身体と知覚 [05] / 弐・計算と構造 [04]）全9標本
+  // =========================================================
+  const ALL_WORKS = [
+    {
+      id: "001", kanji: "壱", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "静止 ↔ 運動",
+      sticker: "KEYNOTE // 8×8",
+      title: "64 FRAGMENTS",
+      desc: "過去の自分は今の自分と同じ人間なのか？8×8の断片に異なる時間遅延を与え、動きによって自己の輪郭がほどける時空間実験。",
+      descEn: "Is my past self still the same person as I am now? An 8x8 matrix with staggered temporal delays that fractures the self through motion.",
+      url: "https://tnakajox.github.io/64FRAGMENTS/",
+      tilt: -1.8,
+      render(ctx, w, h, t) {
+        const cols = 8, rows = 8;
+        const cw = (w - 32) / cols, ch = (h - 28) / rows;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const v = (Math.sin(t * 2.4 - (r * 0.5 + c * 0.6)) + 1) * 0.5;
+            const shade = Math.round(45 + v * 185);
+            ctx.fillStyle = `rgb(${shade}, ${shade}, ${shade - 3})`;
+            ctx.fillRect(16 + c * cw + 1, 14 + r * ch + 1, cw - 2, ch - 2);
+            if ((r + c) % 5 === 0 && v > 0.6) {
+              ctx.strokeStyle = "#c85a4d";
+              ctx.lineWidth = 1;
+              ctx.strokeRect(16 + c * cw + 2, 14 + r * ch + 2, cw - 4, ch - 4);
+            }
+          }
+        }
+      }
+    },
+    {
+      id: "002", kanji: "弐", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "現在 ↔ 軌跡",
+      sticker: "SLIT-SCAN",
+      title: "THE INVISIBLE LINE",
+      desc: "時間は形にできるのか？1本のスリットが現在を切り取り続け、過ぎ去った身体の動きを空間の彫刻へと変換する。",
+      descEn: "Can time be sculpted? A single optical slit slices the present moment, extruding human motion into spatial form.",
+      url: "https://tnakajox.github.io/the-invisible-line/",
+      tilt: 1.9,
+      render(ctx, w, h, t) {
+        for (let x = 12; x < w - 12; x += 4) {
+          const dist = Math.abs(x - w * 0.5);
+          const wave = Math.sin(x * 0.06 - t * 2.5) * (24 - dist * 0.12);
+          ctx.strokeStyle = dist < 4 ? "#c85a4d" : "rgba(226,223,215,0.35)";
+          ctx.lineWidth = dist < 4 ? 2 : 1;
+          ctx.beginPath();
+          ctx.moveTo(x, h * 0.2 + wave);
+          ctx.lineTo(x, h * 0.8 - wave);
+          ctx.stroke();
+        }
+      }
+    },
+    {
+      id: "003", kanji: "参", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "無色 ↔ 色彩",
+      sticker: "CHROMA",
+      title: "STILLNESS IN COLOR",
+      desc: "動く身体の軌跡だけに遅れて色彩が宿り、ピタッと立ち止まれば銀塩のモノクロームへと凍りつく光学実験。",
+      descEn: "Color emerges only in the delayed wake of bodily motion, freezing back into silver-halide monochrome upon stillness.",
+      url: "https://tnakajox.github.io/STILLNESS-IN-COLOR/",
+      tilt: -2.0,
+      render(ctx, w, h, t) {
+        const bx = w * 0.5 + Math.sin(t * 2.1) * (w * 0.22);
+        const by = h * 0.5 + Math.cos(t * 1.4) * (h * 0.14);
+        const r = Math.min(w, h) * 0.18;
+        ctx.globalCompositeOperation = "screen";
+        ctx.fillStyle = "rgba(220, 60, 60, 0.7)";
+        ctx.beginPath(); ctx.arc(bx - 7, by, r, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "rgba(60, 220, 140, 0.7)";
+        ctx.beginPath(); ctx.arc(bx, by - 4, r, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "rgba(70, 140, 240, 0.7)";
+        ctx.beginPath(); ctx.arc(bx + 7, by + 3, r, 0, Math.PI * 2); ctx.fill();
+        ctx.globalCompositeOperation = "source-over";
+      }
+    },
+    {
+      id: "004", kanji: "肆", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "音 ↔ 形",
+      sticker: "WAVEFORM",
+      title: "SHAPE OF WAVES",
+      desc: "目に見えない波動や音の振動に輪郭を与える。干渉し合う波紋が立ち上がり、空間に幾何学的な彫刻を編む。",
+      descEn: "Giving tangible form to invisible acoustic vibrations. Interfering ripples rise to weave geometric sculptures in space.",
+      url: "https://tnakajox.github.io/shapeofwaves/",
+      tilt: 1.6,
+      render(ctx, w, h, t) {
+        const rows = 9;
+        for (let r = 0; r < rows; r++) {
+          const yBase = h * (0.22 + (r / (rows - 1)) * 0.56);
+          ctx.beginPath();
+          for (let x = 18; x <= w - 18; x += 4) {
+            const normX = (x - w * 0.5) / (w * 0.42);
+            const env = Math.exp(-normX * normX * 2.2);
+            const y = yBase + Math.sin(x * 0.08 + t * 2.6 + r * 0.7) * 18 * env;
+            if (x === 18) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = r === 4 ? "#c85a4d" : `rgba(226,223,215,${0.25 + (r % 2) * 0.35})`;
+          ctx.lineWidth = r === 4 ? 1.8 : 1.1;
+          ctx.stroke();
+        }
+      }
+    },
+    {
+      id: "005", kanji: "伍", category: "BODY",
+      catLabel: "壱・身体と知覚<br>BODY & PERCEPTION",
+      pair: "見る ↔ 見られる",
+      sticker: "GAZE",
+      title: "THE WATCHED",
+      desc: "見ることは、見られることでもある。無数の視線が鑑賞者の存在を捕捉・追跡し、観測者と被写体の立場を反転させる。",
+      descEn: "To look is also to be seen. A field of gazes locks onto and tracks your presence, inverting observer and observed.",
+      url: "https://tnakajox.github.io/the-watched/",
+      tilt: -1.9,
+      render(ctx, w, h, t) {
+        const cx = w * 0.5, cy = h * 0.5;
+        const rx = w * 0.32, ry = h * 0.17;
+        ctx.strokeStyle = "rgba(226,223,215,0.65)";
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(cx - rx, cy);
+        ctx.quadraticCurveTo(cx, cy - ry * 1.4, cx + rx, cy);
+        ctx.quadraticCurveTo(cx, cy + ry * 1.4, cx - rx, cy);
+        ctx.stroke();
+        const lookX = Math.cos(t * 1.6) * 16;
+        const lookY = Math.sin(t * 1.1) * 7;
+        ctx.strokeStyle = "#c85a4d";
+        ctx.beginPath(); ctx.arc(cx + lookX, cy + lookY, 15, 0, Math.PI * 2); ctx.stroke();
+        ctx.fillStyle = "#e2dfd7";
+        ctx.beginPath(); ctx.arc(cx + lookX, cy + lookY, 6, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = "rgba(200,90,77,0.35)";
+        ctx.beginPath();
+        ctx.moveTo(cx + lookX - 24, cy + lookY); ctx.lineTo(cx + lookX + 24, cy + lookY);
+        ctx.moveTo(cx + lookX, cy + lookY - 24); ctx.lineTo(cx + lookX, cy + lookY + 24);
+        ctx.stroke();
+      }
+    },
+    {
+      id: "006", kanji: "陸", category: "SYSTEM",
+      catLabel: "弐・計算と構造<br>SYSTEM & STRUCTURE",
+      pair: "完成 ↔ 未完成",
+      sticker: "CRITIQUE",
+      title: "しかし (HOWEVER)",
+      desc: "批評と改稿を無限に繰り返すシステムに対し、最後に「完成」の停止ボタンを押すのはAIではなく人間である。",
+      descEn: "Against a machine trapped in infinite self-critique and revision, only a human can press stop and declare completion.",
+      url: "https://tnakajox.github.io/however/",
+      tilt: 2.2,
+      render(ctx, w, h, t) {
+        const layers = 6;
+        for (let i = 0; i < layers; i++) {
+          const off = ((t * 14 + i * 12) % 48);
+          const alpha = Math.max(0.1, 1 - off / 48);
+          ctx.strokeStyle = i === 0 ? "#c85a4d" : `rgba(226,223,215,${alpha * 0.6})`;
+          ctx.lineWidth = 1.2;
+          ctx.strokeRect(w * 0.24 + off * 0.45, h * 0.22 + off * 0.35, w * 0.42, h * 0.42);
+        }
+      }
+    },
+    {
+      id: "007", kanji: "漆", category: "SYSTEM",
+      catLabel: "弐・計算と構造<br>SYSTEM & STRUCTURE",
+      pair: "空 ↔ 大地",
+      sticker: "LIVE API",
+      title: "WHERE IS THE CLOUD?",
+      desc: "クラウドは空の上にはない。世界のデータセンターの物理座標と公開ステータスAPIをリアルタイム観測する。",
+      descEn: "The cloud is not in the sky. Real-time observation of physical data center coordinates and live status APIs across the globe.",
+      url: "https://tnakajox.github.io/where-is-the-cloud/",
+      tilt: -1.7,
+      render(ctx, w, h, t) {
+        const cx = w * 0.5, cy = h * 0.5, r = Math.min(w, h) * 0.35;
+        ctx.strokeStyle = "rgba(226,223,215,0.28)";
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
+        for (let i = -2; i <= 2; i++) {
+          ctx.beginPath();
+          ctx.ellipse(cx, cy, r, r * Math.abs(Math.cos(i * 0.45 + t * 0.3)), 0, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        const nodes = [[-0.4, -0.2], [0.5, -0.3], [0.2, 0.35], [-0.25, 0.25], [0.65, 0.1]];
+        nodes.forEach(([nx, ny], idx) => {
+          const px = cx + nx * r, py = cy + ny * r;
+          const pulse = (Math.sin(t * 3 + idx) + 1) * 0.5;
+          ctx.fillStyle = idx === 1 ? "#c85a4d" : "#e2dfd7";
+          ctx.beginPath(); ctx.arc(px, py, 2.5 + pulse * 1.5, 0, Math.PI * 2); ctx.fill();
+        });
+      }
+    },
+    {
+      id: "008", kanji: "捌", category: "SYSTEM",
+      catLabel: "弐・計算と構造<br>SYSTEM & STRUCTURE",
+      pair: "遠い ↔ 頭上",
+      sticker: "ORBIT // SGP4",
+      title: "ABOVE US",
+      desc: "公開軌道要素（TLE）から頭上を通過する不可視の人工衛星群をブラウザ内で推算し、現在地との接続線を可視化する。",
+      descEn: "Browser-based SGP4 orbital propagation tracking invisible satellites passing overhead from live TLE datasets.",
+      url: "https://tnakajox.github.io/above-us/",
+      tilt: 1.8,
+      render(ctx, w, h, t) {
+        const cx = w * 0.5, cy = h * 0.5, r = Math.min(w, h) * 0.38;
+        ctx.strokeStyle = "rgba(226,223,215,0.22)";
+        ctx.lineWidth = 1;
+        [0.45, 0.75, 1.0].forEach(s => {
+          ctx.beginPath(); ctx.arc(cx, cy, r * s, 0, Math.PI * 2); ctx.stroke();
+        });
+        const ang = t * 1.2;
+        ctx.strokeStyle = "rgba(200,90,77,0.65)";
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(ang) * r, cy + Math.sin(ang) * r); ctx.stroke();
+        for (let k = 0; k < 4; k++) {
+          const sa = t * (0.5 + k * 0.2) + k * 1.6;
+          const sr = r * (0.35 + k * 0.18);
+          const sx = cx + Math.cos(sa) * sr, sy = cy + Math.sin(sa) * sr;
+          ctx.fillStyle = "#e2dfd7";
+          ctx.fillRect(sx - 2, sy - 2, 4, 4);
+        }
+      }
+    },
+    {
+      id: "009", kanji: "玖", category: "SYSTEM",
+      catLabel: "弐・計算と構造<br>SYSTEM & STRUCTURE",
+      pair: "遠回り ↔ 近道",
+      sticker: "ANNEALING",
+      title: "DETOUR TO SHORTCUT",
+      desc: "遠回りは近道を探せるのか？焼きなまし法が局所解を抜け出し最適経路を見つける過程を計器化する。",
+      descEn: "Can a detour find a shortcut? Instrumenting simulated annealing as it escapes local minima to solve optimal routes.",
+      url: "https://tnakajox.github.io/santas-route/",
+      tilt: -2.0,
+      render(ctx, w, h, t) {
+        const pts = [[0.2,0.25],[0.45,0.18],[0.78,0.28],[0.82,0.68],[0.55,0.82],[0.24,0.72],[0.5,0.48]];
+        const swap = Math.sin(t * 1.8) > 0;
+        const order = swap ? [0,1,2,3,4,5,6] : [0,6,1,2,4,3,5];
+        ctx.strokeStyle = swap ? "#e2dfd7" : "rgba(200,90,77,0.75)";
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        order.forEach((idx, i) => {
+          const px = pts[idx][0] * w, py = pts[idx][1] * h;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        });
+        ctx.closePath(); ctx.stroke();
+        pts.forEach(([x, y]) => {
+          ctx.fillStyle = "#e2dfd7";
+          ctx.beginPath(); ctx.arc(x * w, y * h, 3, 0, Math.PI * 2); ctx.fill();
+        });
+      }
+    }
+  ];
+
+  const cfTrack = document.getElementById("cf-track");
+  const cfSlider = document.getElementById("cf-slider");
+  const cfCounter = document.getElementById("cf-counter");
+  const insNum = document.getElementById("ins-num");
+  const insKicker = document.getElementById("ins-kicker");
+  const insTitle = document.getElementById("ins-title");
+  const insDesc = document.getElementById("ins-desc");
+  const insDescEn = document.getElementById("ins-desc-en");
+  const insLink = document.getElementById("ins-link");
+
+  let filteredWorks = [...ALL_WORKS];
+  let activeIdx = 0;
+  let cardNodes = [];
+  let cardCanvases = [];
+
+  function buildArchiveDeck(category = "ALL") {
+    filteredWorks = category === "ALL"
+      ? [...ALL_WORKS]
+      : ALL_WORKS.filter(w => w.category === category);
+
+    cfTrack.innerHTML = "";
+    cardNodes = [];
+    cardCanvases = [];
+    activeIdx = 0;
+    cfSlider.max = Math.max(0, filteredWorks.length - 1);
+    cfSlider.value = 0;
+
+    filteredWorks.forEach((w, i) => {
+      const card = document.createElement("article");
+      card.className = "mag-polaroid";
+      card.tabIndex = 0;
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-label", `${w.title} を選択`);
+      card.innerHTML = `
+        <div class="mag-photo-wrap">
+          <span class="mag-sticker">${w.sticker}</span>
+          <canvas class="work-live-canvas"></canvas>
+        </div>
+        <div class="mag-article-box">
+          <div class="mag-kicker-row"><span>FIG. ${w.id}</span><span>${w.pair}</span></div>
+          <h3 class="mag-headline">${w.title}</h3>
+        </div>
+      `;
+      const c = card.querySelector("canvas");
+      const cCtx = c.getContext("2d");
+      fitCanvasDPR(c, cCtx, 280, 250);
+      cardCanvases.push({ canvas: c, ctx: cCtx, work: w });
+
+      card.addEventListener("click", () => {
+        if (activeIdx === i) {
+          window.open(w.url, "_blank", "noopener");
+        } else {
+          selectCard(i);
+        }
+      });
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          if (activeIdx === i) window.open(w.url, "_blank", "noopener");
+          else selectCard(i);
+        }
+      });
+      cfTrack.appendChild(card);
+      cardNodes.push(card);
+    });
+
+    selectCard(0, false);
+  }
+
+  function selectCard(idx, withGlitch = true) {
+    if (withGlitch && idx !== activeIdx) {
+      triggerGlitch(0.55);
+    }
+    activeIdx = Math.max(0, Math.min(filteredWorks.length - 1, idx));
+    cfSlider.value = activeIdx;
+
+    const w = filteredWorks[activeIdx];
+    const totalStr = String(filteredWorks.length).padStart(2, "0");
+    cfCounter.textContent = `標本 ${String(activeIdx + 1).padStart(2, "0")} / ${totalStr}`;
+    insNum.textContent = w.kanji;
+    insKicker.innerHTML = w.catLabel + "<br>" + w.pair;
+    insTitle.textContent = w.title;
+    insDesc.textContent = w.desc;
+    insDescEn.textContent = w.descEn;
+    insLink.href = w.url;
+
+    const isMobile = window.innerWidth <= 860;
+    if (isMobile) return;
+
+    const stepX = 188;
+    cardNodes.forEach((node, i) => {
+      const diff = i - activeIdx;
+      const abs = Math.abs(diff);
+      const baseTilt = filteredWorks[i].tilt;
+      node.classList.toggle("active", diff === 0);
+
+      if (diff === 0) {
+        node.style.transform = `translate3d(0px, -8px, 0px) rotate(${baseTilt * 0.55}deg) scale(1.05)`;
+        node.style.zIndex = 30;
+        node.style.opacity = 1;
+        node.style.pointerEvents = "auto";
+      } else {
+        const dir = diff > 0 ? 1 : -1;
+        const tx = dir * (105 + abs * stepX * 0.72);
+        const ty = abs * 7;
+        const rot = baseTilt * 2.3 + dir * (abs * 3.1);
+        const sc = Math.max(0.82, 0.96 - abs * 0.04);
+
+        node.style.transform = `translate3d(${tx}px, ${ty}px, 0px) rotate(${rot}deg) scale(${sc})`;
+        node.style.zIndex = 20 - abs;
+        node.style.opacity = abs > 3 ? 0 : 1;
+        node.style.pointerEvents = abs > 3 ? "none" : "auto";
+      }
+    });
+  }
+
+  const catTabs = document.querySelectorAll(".cat-tab");
+  catTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      catTabs.forEach(t => {
+        t.classList.remove("active");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.add("active");
+      tab.setAttribute("aria-selected", "true");
+      buildArchiveDeck(tab.dataset.cat);
+    });
+  });
+
+  document.getElementById("btn-prev").addEventListener("click", () => selectCard(activeIdx - 1));
+  document.getElementById("btn-next").addEventListener("click", () => selectCard(activeIdx + 1));
+  cfSlider.addEventListener("input", (e) => selectCard(Number(e.target.value)));
+
+  window.addEventListener("keydown", (e) => {
+    if (e.target.tagName === "INPUT") return;
+    if (e.key === "ArrowLeft") selectCard(activeIdx - 1);
+    if (e.key === "ArrowRight") selectCard(activeIdx + 1);
+  });
+
+  let archiveVisible = false;
+  let previewTime = 0;
+
+  function renderCardPreviews() {
+    if (!archiveVisible || document.hidden) return;
+    previewTime += 0.025;
+
+    cardCanvases.forEach((item, i) => {
+      if (window.innerWidth > 860 && Math.abs(i - activeIdx) > 2) return;
+      item.ctx.clearRect(0, 0, 280, 250);
+      item.work.render(item.ctx, 280, 250, previewTime + i);
+    });
+
+    requestAnimationFrame(renderCardPreviews);
+  }
+
+  const archiveObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      archiveVisible = entry.isIntersecting;
+      if (archiveVisible) requestAnimationFrame(renderCardPreviews);
+    });
+  }, { threshold: 0.1 });
+  archiveObserver.observe(document.getElementById("archive"));
+
+  buildArchiveDeck("ALL");
+
+  // =========================================================
+  // 6. 白黒ポートレートによるデジタルモザイク結像
+  //    （静止肖像 ＋ カーソル接近で粒子分散）
+  // =========================================================
+  const canvas = document.getElementById("mosaic-canvas");
+  const ctx = canvas.getContext("2d");
+  let W = window.innerWidth;
+  let H = window.innerHeight;
+  fitCanvasDPR(canvas, ctx, W, H);
+
+  const fbW = 64;
+  const fbH = 64;
+  const faceBuffer = document.createElement("canvas");
+  faceBuffer.width = fbW;
+  faceBuffer.height = fbH;
+  const fCtx = faceBuffer.getContext("2d");
+
+  let mosaicTiles = [];
+
+  function buildFallbackTiles() {
+    fCtx.fillStyle = "#000000";
+    fCtx.fillRect(0, 0, fbW, fbH);
+    const headGrad = fCtx.createRadialGradient(fbW * 0.46, fbH * 0.44, 3, fbW * 0.5, fbH * 0.48, fbW * 0.42);
+    headGrad.addColorStop(0, "#ffffff");
+    headGrad.addColorStop(0.6, "#787878");
+    headGrad.addColorStop(1, "#000000");
+    fCtx.fillStyle = headGrad;
+    fCtx.beginPath();
+    fCtx.ellipse(fbW * 0.5, fbH * 0.48, fbW * 0.34, fbH * 0.42, 0, 0, Math.PI * 2);
+    fCtx.fill();
+
+    const data = fCtx.getImageData(0, 0, fbW, fbH).data;
+    const tiles = [];
+    for (let y = 0; y < fbH; y++) {
+      for (let x = 0; x < fbW; x++) {
+        const idx = (y * fbW + x) * 4;
+        const luma = data[idx] / 255;
+        if (luma < 0.10) continue;
+        tiles.push({
+          gx: x - fbW * 0.5,
+          gy: y - fbH * 0.5,
+          tone: luma,
+          depth: luma,
+          sizeFactor: 0.88,
+          scatterX: (Math.random() - 0.5) * 1400,
+          scatterY: (Math.random() - 0.5) * 1100,
+          scatterZ: 0.2 + Math.random() * 2.2,
+          seed: Math.random() * Math.PI * 2
+        });
+      }
+    }
+    mosaicTiles = tiles;
+  }
+
+  function buildTilesFromPortrait(img) {
+    fCtx.clearRect(0, 0, fbW, fbH);
+    const minSide = Math.min(img.width, img.height);
+    const sx = (img.width - minSide) * 0.5;
+    const sy = (img.height - minSide) * 0.5;
+    fCtx.drawImage(img, sx, sy, minSide, minSide, 0, 0, fbW, fbH);
+
+    const imgData = fCtx.getImageData(0, 0, fbW, fbH).data;
+    const tiles = [];
+
+    for (let y = 0; y < fbH; y++) {
+      for (let x = 0; x < fbW; x++) {
+        const idx = (y * fbW + x) * 4;
+        const r = imgData[idx];
+        const g = imgData[idx + 1];
+        const b = imgData[idx + 2];
+
+        const luma = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        if (luma < 0.10) continue;
+
+        const maxC = Math.max(r, g, b);
+        const minC = Math.min(r, g, b);
+        const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
+
+        const nx = (x - fbW * 0.5) / (fbW * 0.36);
+        const ny = (y - fbH * 0.52) / (fbH * 0.44);
+        const ellipseDist = Math.hypot(nx, ny);
+
+        if (ellipseDist > 0.78 && luma > 0.80 && sat < 0.16) continue;
+        if (luma > 0.94 && ellipseDist > 0.65) continue;
+
+        const contrasted = Math.min(1, Math.max(0.08, (luma - 0.03) * 1.15));
+        const depth = Math.pow(contrasted, 1.1);
+
+        tiles.push({
+          gx: x - fbW * 0.5,
+          gy: y - fbH * 0.5,
+          tone: contrasted,
+          depth,
+          sizeFactor: 0.88,
+          scatterX: (Math.random() - 0.5) * 1450,
+          scatterY: (Math.random() - 0.5) * 1150,
+          scatterZ: 0.25 + Math.random() * 2.1,
+          seed: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    if (tiles.length > 100) {
+      mosaicTiles = tiles;
+    }
+  }
+
+  buildFallbackTiles();
+  const portraitImg = new Image();
+  portraitImg.onload = () => buildTilesFromPortrait(portraitImg);
+  portraitImg.src = PORTRAIT_SRC;
+
+  let faceWasLocked = false;
+  let lastScroll = 0;
+  const mosaicReadout = document.getElementById("mosaic-readout");
+  const mosaicSec = document.getElementById("mosaic");
+
+  function mosaicProgress() {
+    const r = mosaicSec.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const s = vh - r.top;
+    const raw = Math.min(1, Math.max(0, (s - 0.3 * vh) / (0.8 * vh)));
+    const fadeOut = 1 - Math.min(1, Math.max(0, (s - (r.height - 0.6 * vh)) / (0.6 * vh)));
+    return { raw, fadeOut };
+  }
+
+  window.addEventListener("scroll", () => {
+    const pct = Math.round(mosaicProgress().raw * 100);
+    if (pct >= 100 && !faceWasLocked) {
+      faceWasLocked = true;
+      triggerGlitch(0.95);
+    } else if (pct < 85) {
+      faceWasLocked = false;
+    }
+
+    if (Math.abs(window.scrollY - lastScroll) > 320) {
+      triggerGlitch(0.45);
+      lastScroll = window.scrollY;
+    }
+
+    mosaicReadout.textContent = pct === 0
+      ? `SILENCE // 0%`
+      : pct < 100
+        ? `RECONSTRUCTING // ${pct}%`
+        : `LOCKED // 100%`;
+  }, { passive: true });
+
+  let t = 0;
+  function renderMosaic() {
+    if (!document.hidden && mosaicProgress().fadeOut > 0.01) {
+      t += 0.015;
+      ctx.clearRect(0, 0, W, H);
+
+      smoothMx += (mx - smoothMx) * 0.14;
+      smoothMy += (my - smoothMy) * 0.14;
+
+      const { raw, fadeOut } = mosaicProgress();
+      const assemble = 1 - Math.pow(1 - raw, 3);
+
+      if (fadeOut > 0.01) {
+        const targetCenterX = W > 860 ? W * 0.67 : W * 0.5;
+        const targetCenterY = H * (W > 860 ? 0.5 : 0.28);
+        const cellUnit = W > 860 ? Math.min(W, H) * 0.0068 : W * 0.0092;
+
+        if (assemble > 0.2) {
+          const frameW = fbW * cellUnit * 0.96;
+          const frameH = fbH * cellUnit * 0.98;
+          ctx.strokeStyle = `rgba(226, 223, 215, ${assemble * 0.14 * fadeOut})`;
+          ctx.lineWidth = 1;
+          ctx.strokeRect(
+            targetCenterX - frameW * 0.5,
+            targetCenterY - frameH * 0.5,
+            frameW,
+            frameH
+          );
+        }
+
+        const glitchRow = glitchIntensity > 0.08 ? Math.floor((Math.random() - 0.5) * fbH) : 999;
+        const glitchShiftX = glitchIntensity > 0.08 ? (Math.random() - 0.5) * 44 * glitchIntensity : 0;
+        const repelRadius = Math.max(75, Math.min(W, H) * 0.11);
+
+        for (let i = 0; i < mosaicTiles.length; i++) {
+          const tile = mosaicTiles[i];
+          const rowOffset = Math.abs(tile.gy - glitchRow) < 2.8 ? glitchShiftX : 0;
+
+          const baseTx = targetCenterX + tile.gx * cellUnit + rowOffset;
+          const baseTy = targetCenterY + tile.gy * cellUnit;
+
+          let repelX = 0;
+          let repelY = 0;
+          let repelScale = 1.0;
+
+          if (hasMoved && assemble > 0.35) {
+            const dx = baseTx - smoothMx;
+            const dy = baseTy - smoothMy;
+            const dist = Math.hypot(dx, dy);
+
+            if (dist < repelRadius && dist > 0.01) {
+              const force = Math.pow(1 - dist / repelRadius, 1.8) * assemble;
+              const angle = Math.atan2(dy, dx) + Math.sin(t * 2 + tile.seed) * 0.35;
+              const push = force * 54 * (0.6 + (tile.seed % 1));
+              repelX = Math.cos(angle) * push;
+              repelY = Math.sin(angle) * push;
+              repelScale = 1.0 - force * 0.42;
+            }
+          }
+
+          const tx = baseTx + repelX;
+          const ty = baseTy + repelY;
+
+          const driftX = Math.sin(t + tile.seed) * 16 * (1 - assemble);
+          const driftY = Math.cos(t * 0.9 + tile.seed) * 16 * (1 - assemble);
+
+          const cx = (tx + tile.scatterX + driftX) * (1 - assemble) + tx * assemble;
+          const cy = (ty + tile.scatterY + driftY) * (1 - assemble) + ty * assemble;
+
+          const scale = tile.scatterZ * (1 - assemble) + repelScale * assemble;
+          const w = cellUnit * tile.sizeFactor * scale;
+          const h = cellUnit * tile.sizeFactor * scale;
+
+          const gray = Math.round(38 + tile.tone * 204);
+          const tilePresence = 0.45 + tile.tone * 0.55;
+          const alpha = (0.09 * (1 - assemble) + tilePresence * 0.92 * assemble) * fadeOut;
+
+          ctx.fillStyle = `rgba(${gray}, ${gray}, ${gray - 4}, ${alpha})`;
+          ctx.fillRect(cx - w * 0.5, cy - h * 0.5, w - 0.7, h - 0.7);
+        }
+      }
+    }
+    requestAnimationFrame(renderMosaic);
+  }
+  renderMosaic();
+
+  window.addEventListener("resize", () => {
+    W = gW = bW = window.innerWidth;
+    H = gH = bH = window.innerHeight;
+    fitCanvasDPR(canvas, ctx, W, H);
+    fitCanvasDPR(glitchCanvas, gCtx, gW, gH);
+    fitCanvasDPR(brushCanvas, bCtx, bW, bH);
+    resizeHeroWork();
+    selectCard(activeIdx, false);
+  });
+})();
+</script>
+</body>
+</html>
