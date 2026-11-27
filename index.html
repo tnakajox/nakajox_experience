@@ -2369,29 +2369,24 @@
 
   let t = 0;
   function renderMosaic() {
+   let t = 0;
+  function renderMosaic() {
     if (!document.hidden && mosaicProgress().fadeOut > 0.01) {
       t += 0.015;
       ctx.clearRect(0, 0, W, H);
 
-      smoothMx += (mx - smoothMx) * 0.08;
-      smoothMy += (my - smoothMy) * 0.08;
+      smoothMx += (mx - smoothMx) * 0.14;
+      smoothMy += (my - smoothMy) * 0.14;
 
       const { raw, fadeOut } = mosaicProgress();
       const assemble = 1 - Math.pow(1 - raw, 3);
 
       if (fadeOut > 0.01) {
-        const baseCenterX = W > 860 ? W * 0.67 : W * 0.5;
-        const baseCenterY = H * (W > 860 ? 0.5 : 0.28);
+        const targetCenterX = W > 860 ? W * 0.67 : W * 0.5;
+        const targetCenterY = H * (W > 860 ? 0.5 : 0.28);
         const cellUnit = Math.min(W, H) * 0.0068;
 
-        const normX = (smoothMx / W - 0.5) * 2;
-        const normY = (smoothMy / H - 0.5) * 2;
-        const followX = normX * 48 * assemble;
-        const followY = normY * 34 * assemble;
-
-        const targetCenterX = baseCenterX + followX;
-        const targetCenterY = baseCenterY + followY;
-
+        // 外枠フレーム（静止）
         if (assemble > 0.2) {
           const frameW = fbW * cellUnit * 0.96;
           const frameH = fbH * cellUnit * 0.98;
@@ -2408,24 +2403,39 @@
         const glitchRow = glitchIntensity > 0.08 ? Math.floor((Math.random() - 0.5) * fbH) : 999;
         const glitchShiftX = glitchIntensity > 0.08 ? (Math.random() - 0.5) * 44 * glitchIntensity : 0;
 
-        // マウス方向への視線オフセット（最大 ±1.4 マス分）
-        const eyeLookX = Math.max(-1.4, Math.min(1.4, (smoothMx - targetCenterX) / (W * 0.25))) * cellUnit * assemble;
-        const eyeLookY = Math.max(-0.9, Math.min(0.9, (smoothMy - targetCenterY) / (H * 0.25))) * cellUnit * assemble;
+        // マウスカーソルによる粒子分散の半径と強さ
+        const repelRadius = Math.max(75, Math.min(W, H) * 0.11);
 
         for (let i = 0; i < mosaicTiles.length; i++) {
           const tile = mosaicTiles[i];
           const rowOffset = Math.abs(tile.gy - glitchRow) < 2.8 ? glitchShiftX : 0;
 
-          const isLeftEye  = (tile.gx >= -13 && tile.gx <= -5) && (tile.gy >= -8 && tile.gy <= -3);
-          const isRightEye = (tile.gx >= 4   && tile.gx <= 12) && (tile.gy >= -8 && tile.gy <= -3);
-          const isEyeZone  = (isLeftEye || isRightEye) && assemble > 0.5;
+          // 静止した本来の結像座標
+          const baseTx = targetCenterX + tile.gx * cellUnit + rowOffset;
+          const baseTy = targetCenterY + tile.gy * cellUnit;
 
-          const depthFactor = 0.92 + tile.depth * 0.14;
-          const extraEyeX = isEyeZone ? eyeLookX : 0;
-          const extraEyeY = isEyeZone ? eyeLookY : 0;
+          // カーソルが近づいた粒子を放射状に散らす計算
+          let repelX = 0;
+          let repelY = 0;
+          let repelScale = 1.0;
 
-          const tx = baseCenterX + followX * depthFactor + tile.gx * cellUnit + rowOffset + extraEyeX;
-          const ty = baseCenterY + followY * depthFactor + tile.gy * cellUnit + extraEyeY;
+          if (hasMoved && assemble > 0.35) {
+            const dx = baseTx - smoothMx;
+            const dy = baseTy - smoothMy;
+            const dist = Math.hypot(dx, dy);
+
+            if (dist < repelRadius && dist > 0.01) {
+              const force = Math.pow(1 - dist / repelRadius, 1.8) * assemble;
+              const angle = Math.atan2(dy, dx) + Math.sin(t * 2 + tile.seed) * 0.35;
+              const push = force * 54 * (0.6 + (tile.seed % 1));
+              repelX = Math.cos(angle) * push;
+              repelY = Math.sin(angle) * push;
+              repelScale = 1.0 - force * 0.42;
+            }
+          }
+
+          const tx = baseTx + repelX;
+          const ty = baseTy + repelY;
 
           const driftX = Math.sin(t + tile.seed) * 16 * (1 - assemble);
           const driftY = Math.cos(t * 0.9 + tile.seed) * 16 * (1 - assemble);
@@ -2433,7 +2443,7 @@
           const cx = (tx + tile.scatterX + driftX) * (1 - assemble) + tx * assemble;
           const cy = (ty + tile.scatterY + driftY) * (1 - assemble) + ty * assemble;
 
-          const scale = tile.scatterZ * (1 - assemble) + 1.0 * assemble;
+          const scale = tile.scatterZ * (1 - assemble) + repelScale * assemble;
           const w = cellUnit * tile.sizeFactor * scale;
           const h = cellUnit * tile.sizeFactor * scale;
 
@@ -2443,20 +2453,6 @@
 
           ctx.fillStyle = `rgba(${gray}, ${gray}, ${gray - 4}, ${alpha})`;
           ctx.fillRect(cx - w * 0.5, cy - h * 0.5, w - 0.7, h - 0.7);
-        }
-
-        if (!isPhotoPortrait && assemble > 0.45) {
-          const eyeAlpha = ((assemble - 0.45) / 0.55) * fadeOut;
-          const lookX = Math.max(-1, Math.min(1, (smoothMx - targetCenterX) / (W * 0.35))) * cellUnit * 2.0;
-          const lookY = Math.max(-1, Math.min(1, (smoothMy - targetCenterY) / (H * 0.35))) * cellUnit * 1.4;
-
-          const leftEyeX = targetCenterX - fbW * 0.14 * cellUnit + lookX;
-          const rightEyeX = targetCenterX + fbW * 0.14 * cellUnit + lookX;
-          const eyesY = targetCenterY - fbH * 0.08 * cellUnit + lookY;
-
-          ctx.fillStyle = `rgba(255, 255, 255, ${eyeAlpha * 0.92})`;
-          ctx.fillRect(leftEyeX - cellUnit * 0.8, eyesY - cellUnit * 0.8, cellUnit * 1.6, cellUnit * 1.6);
-          ctx.fillRect(rightEyeX - cellUnit * 0.8, eyesY - cellUnit * 0.8, cellUnit * 1.6, cellUnit * 1.6);
         }
       }
     }
