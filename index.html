@@ -1088,6 +1088,10 @@
   }
 
   @media (max-width: 860px) {
+    .nav-group { display: none; }
+    header { padding: 12px 5vw; }
+    .brand-lockup span:last-child { display: none; }
+
     .raw-caption {
       top: 52vh;
       max-width: none;
@@ -1447,11 +1451,12 @@
   let glitchRafId = null;
 
   function triggerGlitch(power = 1.1) {
-    glitchIntensity = Math.min(2.2, glitchIntensity + power);
+    if (reduceMotion.matches) return;
+    glitchIntensity = Math.min(1.0, glitchIntensity + power);
     document.body.classList.add("glitch-spike");
     setTimeout(() => {
       document.body.classList.remove("glitch-spike");
-    }, 180);
+    }, 130);
 
     if (!glitchRafId) {
       glitchCanvas.style.display = "block";
@@ -1463,26 +1468,26 @@
     gCtx.clearRect(0, 0, gW, gH);
 
     if (glitchIntensity > 0.04) {
-      const sliceCount = Math.floor(12 + glitchIntensity * 22);
+      const sliceCount = Math.floor(8 + glitchIntensity * 14);
       for (let i = 0; i < sliceCount; i++) {
         const sy = Math.random() * gH;
-        const sh = 2 + Math.random() * (32 * glitchIntensity);
+        const sh = 2 + Math.random() * (22 * glitchIntensity);
         const sx = Math.random() * gW * 0.5;
-        const sw = 120 + Math.random() * (gW * 0.78);
-        const shift = (Math.random() - 0.5) * 90 * glitchIntensity;
+        const sw = 120 + Math.random() * (gW * 0.72);
+        const shift = (Math.random() - 0.5) * 68 * glitchIntensity;
 
-        gCtx.fillStyle = `rgba(255, 36, 36, ${Math.min(0.55, 0.28 * glitchIntensity)})`;
+        gCtx.fillStyle = `rgba(255, 36, 36, ${Math.min(0.42, 0.24 * glitchIntensity)})`;
         gCtx.fillRect(sx + shift, sy, sw, sh);
 
-        gCtx.fillStyle = `rgba(36, 240, 255, ${Math.min(0.55, 0.28 * glitchIntensity)})`;
+        gCtx.fillStyle = `rgba(36, 240, 255, ${Math.min(0.42, 0.24 * glitchIntensity)})`;
         gCtx.fillRect(sx - shift, sy + 1, sw, sh);
 
-        if (Math.random() < 0.55) {
-          gCtx.fillStyle = `rgba(235, 232, 224, ${Math.min(0.65, 0.35 * glitchIntensity)})`;
+        if (Math.random() < 0.45) {
+          gCtx.fillStyle = `rgba(235, 232, 224, ${Math.min(0.42, 0.28 * glitchIntensity)})`;
           gCtx.fillRect(0, sy, gW, 1.5);
         }
       }
-      glitchIntensity *= 0.92;
+      glitchIntensity *= 0.89;
       glitchRafId = requestAnimationFrame(renderGlitchBurst);
     } else {
       gCtx.clearRect(0, 0, gW, gH);
@@ -1530,6 +1535,7 @@
   }
 
   window.addEventListener("pointermove", (e) => {
+    if (reduceMotion.matches) return;
     if (e.pointerType === "touch") return;
     document.body.classList.add("brush-active");
 
@@ -1568,6 +1574,7 @@
   });
 
   window.addEventListener("pointerdown", (e) => {
+    if (reduceMotion.matches) return;
     if (e.pointerType === "touch") return;
     const now = performance.now();
     splatters.push({ x: e.clientX, y: e.clientY, r: 14.0, t: now, life: 1200 });
@@ -1648,7 +1655,7 @@
       bCtx.fill();
     }
 
-    if (strokes.length > 0 || splatters.length > 0 || hasMoved) {
+    if (strokes.length > 0 || splatters.length > 0) {
       brushRafId = requestAnimationFrame(renderCalligraphyBrush);
     } else {
       brushRafId = null;
@@ -1683,7 +1690,7 @@
       }
     } else {
       subEl.classList.add("show");
-      triggerGlitch(1.25);
+      triggerGlitch(0.95);
     }
   }
 
@@ -2236,7 +2243,7 @@
       for (let x = 0; x < fbW; x++) {
         const idx = (y * fbW + x) * 4;
         const luma = data[idx] / 255;
-        if (luma < 0.08) continue;
+        if (luma < 0.10) continue;
         tiles.push({
           gx: x - fbW * 0.5,
           gy: y - fbH * 0.5,
@@ -2271,6 +2278,8 @@
         const b = imgData[idx + 2];
 
         const luma = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        if (luma < 0.10) continue;
+
         const maxC = Math.max(r, g, b);
         const minC = Math.min(r, g, b);
         const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
@@ -2327,7 +2336,7 @@
     const pct = Math.round(mosaicProgress().raw * 100);
     if (pct >= 100 && !faceWasLocked) {
       faceWasLocked = true;
-      triggerGlitch(1.25);
+      triggerGlitch(0.95);
     } else if (pct < 85) {
       faceWasLocked = false;
     }
@@ -2359,7 +2368,7 @@
       if (fadeOut > 0.01) {
         const targetCenterX = W > 860 ? W * 0.67 : W * 0.5;
         const targetCenterY = H * (W > 860 ? 0.5 : 0.28);
-        const cellUnit = Math.min(W, H) * 0.0068;
+        const cellUnit = W > 860 ? Math.min(W, H) * 0.0068 : W * 0.0092;
 
         if (assemble > 0.2) {
           const frameW = fbW * cellUnit * 0.96;
@@ -2389,7 +2398,7 @@
           let repelY = 0;
           let repelScale = 1.0;
 
-          if (hasMoved && assemble > 0.35) {
+          if (!reduceMotion.matches && hasMoved && assemble > 0.35) {
             const dx = baseTx - smoothMx;
             const dy = baseTy - smoothMy;
             const dist = Math.hypot(dx, dy);
