@@ -2416,12 +2416,26 @@
         const glitchShiftX = glitchIntensity > 0.08 ? (Math.random() - 0.5) * 44 * glitchIntensity : 0;
 
         for (let i = 0; i < mosaicTiles.length; i++) {
+          // マウス方向への視線オフセット（最大 ±1.4 マス分）
+        const eyeLookX = Math.max(-1.4, Math.min(1.4, (smoothMx - targetCenterX) / (W * 0.25))) * cellUnit * assemble;
+        const eyeLookY = Math.max(-0.9, Math.min(0.9, (smoothMy - targetCenterY) / (H * 0.25))) * cellUnit * assemble;
+
+        for (let i = 0; i < mosaicTiles.length; i++) {
           const tile = mosaicTiles[i];
           const rowOffset = Math.abs(tile.gy - glitchRow) < 2.8 ? glitchShiftX : 0;
 
-          const depthFactor = 0.90 + tile.depth * 0.18;
-          const tx = baseCenterX + followX * depthFactor + tile.gx * cellUnit + rowOffset;
-          const ty = baseCenterY + followY * depthFactor + tile.gy * cellUnit;
+          // 左目・右目のエリア判定（64x64グリッドの中心基準: gxは左右、gyは少し上）
+          // ※portrait.jpg の目の位置に合わせて数値は微調整可能
+          const isLeftEye  = (tile.gx >= -13 && tile.gx <= -5) && (tile.gy >= -8 && tile.gy <= -3);
+          const isRightEye = (tile.gx >= 4   && tile.gx <= 12) && (tile.gy >= -8 && tile.gy <= -3);
+          const isEyeZone  = (isLeftEye || isRightEye) && assemble > 0.5;
+
+          const depthFactor = 0.92 + tile.depth * 0.14;
+          const extraEyeX = isEyeZone ? eyeLookX : 0;
+          const extraEyeY = isEyeZone ? eyeLookY : 0;
+
+          const tx = baseCenterX + followX * depthFactor + tile.gx * cellUnit + rowOffset + extraEyeX;
+          const ty = baseCenterY + followY * depthFactor + tile.gy * cellUnit + extraEyeY;
 
           const driftX = Math.sin(t + tile.seed) * 16 * (1 - assemble);
           const driftY = Math.cos(t * 0.9 + tile.seed) * 16 * (1 - assemble);
@@ -2439,6 +2453,7 @@
 
           ctx.fillStyle = `rgba(${gray}, ${gray}, ${gray - 4}, ${alpha})`;
           ctx.fillRect(cx - w * 0.5, cy - h * 0.5, w - 0.7, h - 0.7);
+        }
         }
 
         if (!isPhotoPortrait && assemble > 0.45) {
