@@ -1020,7 +1020,6 @@
     color: var(--paper);
   }
 
-  /* 削れ感（石印・掠れ）のある朱印SVG */
   .hanko-eroded-svg {
     width: 32px;
     height: 32px;
@@ -1456,9 +1455,6 @@
   }
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (matchMedia("(pointer:fine)").matches && !reduceMotion.matches) {
-    document.body.classList.add("brush-active");
-  }
 
   // =========================================================
   // 1. 静寂と破綻のグリッチ・システム
@@ -1522,7 +1518,7 @@
   }
 
   // =========================================================
-  // 2. 日本の毛筆カーソル
+  // 2. 日本の毛筆・墨カーソル（マウス移動・クリックで墨痕と飛沫を描く）
   // =========================================================
   const brushCanvas = document.getElementById("brush-canvas");
   const bCtx = brushCanvas.getContext("2d");
@@ -1540,12 +1536,12 @@
 
   const BRISTLES = [
     { ox: 0,     oy: 0,     scale: 1.0 },
-    { ox: -0.32, oy: -0.25, scale: 0.42 },
-    { ox: 0.34,  oy: 0.22,  scale: 0.40 },
-    { ox: -0.58, oy: 0.18,  scale: 0.24 },
-    { ox: 0.55,  oy: -0.22, scale: 0.22 },
-    { ox: -0.78, oy: -0.15, scale: 0.14 },
-    { ox: 0.76,  oy: 0.16,  scale: 0.14 }
+    { ox: -0.34, oy: -0.26, scale: 0.48 },
+    { ox: 0.36,  oy: 0.24,  scale: 0.46 },
+    { ox: -0.60, oy: 0.20,  scale: 0.28 },
+    { ox: 0.58,  oy: -0.24, scale: 0.26 },
+    { ox: -0.82, oy: -0.16, scale: 0.18 },
+    { ox: 0.80,  oy: 0.18,  scale: 0.18 }
   ];
 
   const strokes = [];
@@ -1558,7 +1554,10 @@
     }
   }
 
-  window.addEventListener("mousemove", (e) => {
+  window.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch") return;
+    document.body.classList.add("brush-active");
+
     const now = performance.now();
     const dx = e.clientX - mx;
     const dy = e.clientY - my;
@@ -1569,45 +1568,46 @@
     my = e.clientY;
     hasMoved = true;
 
-    if (reduceMotion.matches) return;
-
-    if (!currentStroke || now - lastMoveTime > 140) {
+    if (!currentStroke || now - lastMoveTime > 150) {
       currentStroke = { points: [] };
       strokes.push(currentStroke);
-      splatters.push({ x: mx, y: my, r: 7.5, t: now, life: 820 });
+      // 打ち込みの墨溜まり
+      splatters.push({ x: mx, y: my, r: 9.5, t: now, life: 1150 });
     }
 
     lastMoveTime = now;
-    const targetWidth = Math.max(1.5, Math.min(18.5, 19.0 - speed * 0.26));
+    // ゆっくり動かすと太く濃く、速く払うとカスレて細くなる毛筆の抑揚
+    const targetWidth = Math.max(2.2, Math.min(26.0, 26.5 - speed * 0.32));
 
     currentStroke.points.push({ x: mx, y: my, w: targetWidth, speed, angle, t: now });
-    if (currentStroke.points.length > 65) currentStroke.points.shift();
+    if (currentStroke.points.length > 85) currentStroke.points.shift();
 
-    if (speed > 32 && Math.random() < 0.45) {
+    // 速い払い動作時の墨の飛沫（しぶき）
+    if (speed > 24 && Math.random() < 0.58) {
       splatters.push({
-        x: mx + (Math.random() - 0.5) * 26,
-        y: my + (Math.random() - 0.5) * 26,
-        r: 1.0 + Math.random() * 2.2,
+        x: mx + (Math.random() - 0.5) * 32,
+        y: my + (Math.random() - 0.5) * 32,
+        r: 1.2 + Math.random() * 2.8,
         t: now,
-        life: 640
+        life: 880
       });
     }
     ensureBrushLoop();
   });
 
-  window.addEventListener("mousedown", (e) => {
-    if (reduceMotion.matches) return;
+  window.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "touch") return;
     const now = performance.now();
-    splatters.push({ x: e.clientX, y: e.clientY, r: 11.0, t: now, life: 900 });
-    for (let k = 0; k < 9; k++) {
-      const ang = (Math.PI * 2 * k) / 9 + (Math.random() - 0.5) * 0.4;
-      const dist = 8 + Math.random() * 32;
+    splatters.push({ x: e.clientX, y: e.clientY, r: 14.0, t: now, life: 1200 });
+    for (let k = 0; k < 12; k++) {
+      const ang = (Math.PI * 2 * k) / 12 + (Math.random() - 0.5) * 0.45;
+      const dist = 10 + Math.random() * 38;
       splatters.push({
         x: e.clientX + Math.cos(ang) * dist,
         y: e.clientY + Math.sin(ang) * dist,
-        r: 1.2 + Math.random() * 3.5,
+        r: 1.4 + Math.random() * 4.0,
         t: now,
-        life: 750
+        life: 960
       });
     }
     ensureBrushLoop();
@@ -1616,7 +1616,7 @@
   function renderCalligraphyBrush() {
     bCtx.clearRect(0, 0, bW, bH);
     const now = performance.now();
-    const strokeLife = 820;
+    const strokeLife = 1150;
 
     for (let s = strokes.length - 1; s >= 0; s--) {
       const pts = strokes[s].points;
@@ -1633,24 +1633,25 @@
         const p0 = pts[i - 1];
         const p1 = pts[i];
         const ageRatio = Math.max(0, 1 - (now - p1.t) / strokeLife);
-        const tipFactor = Math.min(1, i / 4);
-        const taper = Math.pow(ageRatio, 1.3) * tipFactor;
+        const tipFactor = Math.min(1, i / 3);
+        const taper = Math.pow(ageRatio, 1.15) * tipFactor;
         const baseW = p1.w * taper;
-        if (baseW < 0.2) continue;
+        if (baseW < 0.25) continue;
 
         const perpX = -Math.sin(p1.angle);
         const perpY = Math.cos(p1.angle);
 
         for (let b = 0; b < BRISTLES.length; b++) {
           const br = BRISTLES[b];
-          if (p1.speed > 26 && b > 2 && (i + b) % 2 === 0) continue;
+          // 速く動かしたときに穂先が割れて「かすれ（飛白）」が生まれる表現
+          if (p1.speed > 20 && b > 2 && (i + b) % 2 === 0) continue;
 
-          const offsetMag = baseW * 0.42;
+          const offsetMag = baseW * 0.44;
           bCtx.beginPath();
           bCtx.moveTo(p0.x + perpX * br.ox * offsetMag, p0.y + perpY * br.ox * offsetMag);
           bCtx.lineTo(p1.x + perpX * br.ox * offsetMag, p1.y + perpY * br.ox * offsetMag);
-          bCtx.strokeStyle = `rgba(255, 255, 255, ${taper * (b === 0 ? 0.95 : 0.65)})`;
-          bCtx.lineWidth = Math.max(0.5, baseW * br.scale);
+          bCtx.strokeStyle = `rgba(255, 255, 255, ${taper * (b === 0 ? 1.0 : 0.72)})`;
+          bCtx.lineWidth = Math.max(0.6, baseW * br.scale);
           bCtx.stroke();
         }
       }
@@ -1663,20 +1664,21 @@
         splatters.splice(i, 1);
         continue;
       }
-      bCtx.fillStyle = `rgba(255, 255, 255, ${Math.pow(lifeRatio, 1.4) * 0.9})`;
+      bCtx.fillStyle = `rgba(255, 255, 255, ${Math.pow(lifeRatio, 1.25) * 0.95})`;
       bCtx.beginPath();
-      bCtx.arc(sp.x, sp.y, sp.r * Math.pow(lifeRatio, 0.5), 0, Math.PI * 2);
+      bCtx.arc(sp.x, sp.y, sp.r * Math.pow(lifeRatio, 0.45), 0, Math.PI * 2);
       bCtx.fill();
     }
 
     if (hasMoved) {
+      // 穂先の芯（静止時カーソル）
       bCtx.fillStyle = "#ffffff";
       bCtx.beginPath();
-      bCtx.arc(mx, my, 2.4, 0, Math.PI * 2);
+      bCtx.arc(mx, my, 3.0, 0, Math.PI * 2);
       bCtx.fill();
     }
 
-    if (strokes.length > 0 || splatters.length > 0) {
+    if (strokes.length > 0 || splatters.length > 0 || hasMoved) {
       brushRafId = requestAnimationFrame(renderCalligraphyBrush);
     } else {
       brushRafId = null;
@@ -2229,7 +2231,7 @@
 
   // =========================================================
   // 6. ご本人の白黒ポートレートによるデジタルモザイク結像
-  //    （白背景を自動透過し、黒髪と肌の陰影だけをタイル化）
+  //    （頬ハイライトを保護し、整然としたサイズで結像）
   // =========================================================
   const canvas = document.getElementById("mosaic-canvas");
   const ctx = canvas.getContext("2d");
@@ -2247,7 +2249,6 @@
   let mosaicTiles = [];
   let isPhotoPortrait = false;
 
-  // 画像読み込み前のフォールバック（仮の彫刻シルエット）
   function buildFallbackTiles() {
     fCtx.fillStyle = "#000000";
     fCtx.fillRect(0, 0, fbW, fbH);
@@ -2272,7 +2273,7 @@
           gy: y - fbH * 0.5,
           tone: luma,
           depth: luma,
-          sizeFactor: 0.94,
+          sizeFactor: 0.88,
           scatterX: (Math.random() - 0.5) * 1400,
           scatterY: (Math.random() - 0.5) * 1100,
           scatterZ: 0.2 + Math.random() * 2.2,
@@ -2283,10 +2284,8 @@
     mosaicTiles = tiles;
   }
 
-  // 写真から白背景を除き、黒髪・目元・肌の濃淡タイルを生成
   function buildTilesFromPortrait(img) {
     fCtx.clearRect(0, 0, fbW, fbH);
-    // アスペクト比を保って中央クロップ描画
     const minSide = Math.min(img.width, img.height);
     const sx = (img.width - minSide) * 0.5;
     const sy = (img.height - minSide) * 0.5;
@@ -2302,34 +2301,28 @@
         const g = imgData[idx + 1];
         const b = imgData[idx + 2];
 
-        // 輝度（0.0 = 真っ黒, 1.0 = 真っ白）
         const luma = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-        // 彩度（背景の白壁は彩度が極めて低い）
         const maxC = Math.max(r, g, b);
         const minC = Math.min(r, g, b);
         const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
 
-        // 白背景の自動除外（輝度が非常に高く、かつ肌色などの色味がない領域をカット）
-        if (luma > 0.83 && sat < 0.14) continue;
-        // フレーム最外周の白飛びもカット
-        if (luma > 0.88) continue;
+        // 顔の中心からの楕円距離（顔の内側の明るい頬・額ハイライトは保護）
+        const nx = (x - fbW * 0.5) / (fbW * 0.36);
+        const ny = (y - fbH * 0.52) / (fbH * 0.44);
+        const ellipseDist = Math.hypot(nx, ny);
 
-        // コントラスト補正（黒髪や黒服も輪郭タイルとして残るように底上げ）
-        const contrasted = Math.min(1, Math.max(0.06, (luma - 0.04) * 1.18));
+        if (ellipseDist > 0.78 && luma > 0.80 && sat < 0.16) continue;
+        if (luma > 0.94 && ellipseDist > 0.65) continue;
 
-        // 明るいハイライト部分（鼻筋・頬）ほど手前に立体視差をつける
-        const depth = Math.pow(contrasted, 1.2);
-
-        // 輪郭の外側ほど少し大きめの断片を混ぜて破片感を強調
-        const distCenter = Math.hypot((x - fbW * 0.5) / fbW, (y - fbH * 0.5) / fbH);
-        const sizeFactor = distCenter > 0.34 && Math.random() > 0.55 ? 1.28 : 0.92;
+        const contrasted = Math.min(1, Math.max(0.08, (luma - 0.03) * 1.15));
+        const depth = Math.pow(contrasted, 1.1);
 
         tiles.push({
           gx: x - fbW * 0.5,
           gy: y - fbH * 0.5,
           tone: contrasted,
           depth,
-          sizeFactor,
+          sizeFactor: 0.88,
           scatterX: (Math.random() - 0.5) * 1450,
           scatterY: (Math.random() - 0.5) * 1150,
           scatterZ: 0.25 + Math.random() * 2.1,
@@ -2344,7 +2337,6 @@
     }
   }
 
-  // 初期状態で仮の顔をセットし、同時に portrait.jpg を非同期読み込み
   buildFallbackTiles();
   const portraitImg = new Image();
   portraitImg.onload = () => buildTilesFromPortrait(portraitImg);
@@ -2400,18 +2392,16 @@
       if (fadeOut > 0.01) {
         const baseCenterX = W > 860 ? W * 0.67 : W * 0.5;
         const baseCenterY = H * (W > 860 ? 0.5 : 0.28);
-        // 64×64グリッドに合わせて1タイルの基準サイズを調整
-        const cellUnit = Math.min(W, H) * 0.0086;
+        const cellUnit = Math.min(W, H) * 0.0068;
 
         const normX = (smoothMx / W - 0.5) * 2;
         const normY = (smoothMy / H - 0.5) * 2;
-        const followX = normX * 54 * assemble;
-        const followY = normY * 38 * assemble;
+        const followX = normX * 48 * assemble;
+        const followY = normY * 34 * assemble;
 
         const targetCenterX = baseCenterX + followX;
         const targetCenterY = baseCenterY + followY;
 
-        // 結像時に浮かぶ極細の観測フレーム
         if (assemble > 0.2) {
           const frameW = fbW * cellUnit * 0.96;
           const frameH = fbH * cellUnit * 0.98;
@@ -2432,8 +2422,7 @@
           const tile = mosaicTiles[i];
           const rowOffset = Math.abs(tile.gy - glitchRow) < 2.8 ? glitchShiftX : 0;
 
-          // 明るい部分（鼻筋・頬）ほど大きく動く立体視差
-          const depthFactor = 0.72 + tile.depth * 0.62;
+          const depthFactor = 0.90 + tile.depth * 0.18;
           const tx = baseCenterX + followX * depthFactor + tile.gx * cellUnit + rowOffset;
           const ty = baseCenterY + followY * depthFactor + tile.gy * cellUnit;
 
@@ -2447,7 +2436,6 @@
           const w = cellUnit * tile.sizeFactor * scale;
           const h = cellUnit * tile.sizeFactor * scale;
 
-          // 黒髪（toneが低い）は濃墨のグレー(38)、肌ハイライトは白銀(242)として描画
           const gray = Math.round(38 + tile.tone * 204);
           const tilePresence = 0.45 + tile.tone * 0.55;
           const alpha = (0.09 * (1 - assemble) + tilePresence * 0.92 * assemble) * fadeOut;
@@ -2456,7 +2444,6 @@
           ctx.fillRect(cx - w * 0.5, cy - h * 0.5, w - 0.7, h - 0.7);
         }
 
-        // 仮の顔（フォールバック）のときだけ白い目のハイライトを表示
         if (!isPhotoPortrait && assemble > 0.45) {
           const eyeAlpha = ((assemble - 0.45) / 0.55) * fadeOut;
           const lookX = Math.max(-1, Math.min(1, (smoothMx - targetCenterX) / (W * 0.35))) * cellUnit * 2.0;
