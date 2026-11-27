@@ -15,8 +15,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23050505'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23963e33'%3E中%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
   :root {
     --bg: #050505;
     --surface: #0c0c0b;
@@ -31,14 +31,14 @@
     --line-strong: rgba(226, 223, 215, 0.36);
     --glitch-r: rgba(255, 36, 36, 0.85);
     --glitch-c: rgba(36, 240, 255, 0.85);
-    --display: 'Anton', sans-serif;
+ --display: 'Space Grotesk', sans-serif;
     --mincho: 'Shippori Mincho', serif;
     --mono: 'JetBrains Mono', monospace;
     --typewriter: var(--mono);
-    --sans: var(--mincho);
+    --sans: 'Space Grotesk', sans-serif;
   }
 
-  * {
+  *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -503,11 +503,12 @@
     font-weight: 700;
   }
 
-  .featured-title {
+.featured-title {
     font-family: var(--display);
-    font-size: clamp(42px, 5.5vw, 72px);
-    line-height: 0.94;
-    letter-spacing: 0.02em;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 400; /* 極太から細身〜標準のウエイトへ */
+    line-height: 1.05;
+    letter-spacing: -0.02em; /* モダンな欧文は少し字間を詰めると締まる */
     color: var(--fg);
   }
 
@@ -778,12 +779,13 @@
     padding-bottom: 5px;
   }
 
-  .mag-headline {
+.mag-headline {
     margin-top: 8px;
     font-family: var(--display);
-    font-size: 26px;
-    letter-spacing: 0.02em;
-    line-height: 1.04;
+    font-size: 20px; /* Antonより横幅が広いためサイズを少し下げる */
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
     color: var(--ink);
     text-transform: uppercase;
     transition: color 0.25s ease;
@@ -866,10 +868,11 @@
     line-height: 1.65;
   }
 
-  .ed-body .ed-title {
+.ed-body .ed-title {
     font-family: var(--display);
-    font-size: 30px;
-    letter-spacing: 0.03em;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
     color: var(--fg);
   }
 
