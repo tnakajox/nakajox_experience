@@ -1147,12 +1147,6 @@
     .cf-controls { display: none; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .cursor-block { animation: none; }
-    .mag-polaroid { transition: none; }
-  }
-
   footer {
     position: relative;
     z-index: 10;
@@ -1436,8 +1430,6 @@
     return { w: cssW, h: cssH };
   }
 
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
   // =========================================================
   // 1. 静寂と破綻のグリッチ・システム
   // =========================================================
@@ -1450,8 +1442,7 @@
   let glitchIntensity = 0;
   let glitchRafId = null;
 
-  function triggerGlitch(power = 1.1) {
-    if (reduceMotion.matches) return;
+  function triggerGlitch(power = 1.0) {
     glitchIntensity = Math.min(1.0, glitchIntensity + power);
     document.body.classList.add("glitch-spike");
     setTimeout(() => {
@@ -1535,7 +1526,6 @@
   }
 
   window.addEventListener("pointermove", (e) => {
-    if (reduceMotion.matches) return;
     if (e.pointerType === "touch") return;
     document.body.classList.add("brush-active");
 
@@ -1574,7 +1564,6 @@
   });
 
   window.addEventListener("pointerdown", (e) => {
-    if (reduceMotion.matches) return;
     if (e.pointerType === "touch") return;
     const now = performance.now();
     splatters.push({ x: e.clientX, y: e.clientY, r: 14.0, t: now, life: 1200 });
@@ -1694,12 +1683,7 @@
     }
   }
 
-  if (reduceMotion.matches) {
-    typedEl.textContent = sentence;
-    subEl.classList.add("show");
-  } else {
-    setTimeout(typeNextChar, 300);
-  }
+  setTimeout(typeNextChar, 300);
 
   // =========================================================
   // 4. 主役作品『64 FRAGMENTS』インタラクティブ8×8時空間ステージ
@@ -2398,7 +2382,7 @@
           let repelY = 0;
           let repelScale = 1.0;
 
-          if (!reduceMotion.matches && hasMoved && assemble > 0.35) {
+          if (hasMoved && assemble > 0.35) {
             const dx = baseTx - smoothMx;
             const dy = baseTy - smoothMy;
             const dist = Math.hypot(dx, dy);
